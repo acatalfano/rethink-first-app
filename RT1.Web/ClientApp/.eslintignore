@@ -1,0 +1,4 @@
+**/node_modules/
+*.html
+!*.component.html
+**/polyfill.ts

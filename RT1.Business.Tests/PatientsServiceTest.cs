@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Moq;
 
-using RT1.Business.Tests.Mocks;
+using RT1.Business.Tests.Providers;
 using RT1.Business.Tests.Utilities;
 using RT1.Implementations.Services;
 using RT1.Model.Dtos;
@@ -25,7 +25,7 @@ namespace RT1.Business.Tests
             mocks = new PatientsServiceMocks();
             patientsService = new PatientsService(
                 mocks.DataProviderMock.Object,
-                mocks.MapperMock.Object
+                mocks.Mapper.Object
             );
             mockController = new MockControllerBase();
         }
@@ -35,7 +35,7 @@ namespace RT1.Business.Tests
         {
             var outcome = await patientsService.GetAllPatients();
 
-            mocks.MapperMock.Verify(
+            mocks.Mapper.Verify(
                 mapper => mapper.Map<IEnumerable<PatientDto>>(
                     It.Is(mocks.PatientEntities, mocks.PatientListEqualityComparer)
                 ),
@@ -52,7 +52,7 @@ namespace RT1.Business.Tests
         {
             var outcome = await patientsService.GetPatientById(mocks.validId);
 
-            mocks.MapperMock.Verify(
+            mocks.Mapper.Verify(
                 mapper => mapper.Map<PatientDto>(It.Is(mocks.TargetPatientEntity, mocks.PatientEqualityComparer)),
                 Times.Once
             );
@@ -66,7 +66,7 @@ namespace RT1.Business.Tests
         public async Task GetPatientById_ReturnsNotFoundForMissingPatient()
         {
             var outcome = await patientsService.GetPatientById(mocks.invalidId);
-            mocks.MapperMock.Verify(
+            mocks.Mapper.Verify(
                 mapper => mapper.Map<PatientDto>(It.IsAny<Patient>()),
                 Times.Never
             );
@@ -79,7 +79,7 @@ namespace RT1.Business.Tests
         {
             var outcome = await patientsService.CreateManyPatients(new List<PatientDto>());
 
-            mocks.MapperMock.Verify(
+            mocks.Mapper.Verify(
                 mapper => mapper.Map<IEnumerable<PatientDto>>(
                     It.Is(mocks.PatientEntities, mocks.PatientListEqualityComparer)
                 ),
@@ -116,6 +116,21 @@ namespace RT1.Business.Tests
         }
 
         [Fact]
+        public async Task UpdateManyPatients_ReturnsUpdatedPatients()
+        {
+            var outcome = await patientsService.CreateManyPatients(mocks.PatientDtos);
+            outcome.GetStatusCode(mockController);
+            mocks.Mapper.Verify(
+                mapper => mapper.Map<IEnumerable<Patient>>(
+                    It.Is(mocks.PatientDtos, mocks.PatientDtoListEqualityComparer)
+                ),
+                Times.Once
+            );
+            mockController.AssertStatusIs(OperationStatus.Ok);
+            mockController.AssertValueIs(mocks.PatientDtos);
+        }
+
+        [Fact]
         public async Task UpdateManyPatients_DispatchesUpdateOperation()
         {
             await patientsService.UpdateManyPatients(mocks.PatientDtos);
@@ -124,21 +139,6 @@ namespace RT1.Business.Tests
                     It.Is(mocks.PatientEntities, mocks.PatientListEqualityComparer
                 ))
             );
-        }
-
-        [Fact]
-        public async Task UpdateManyPatients_ReturnsUpdatedPatients()
-        {
-            var outcome = await patientsService.CreateManyPatients(mocks.PatientDtos);
-            outcome.GetStatusCode(mockController);
-            mocks.MapperMock.Verify(
-                mapper => mapper.Map<IEnumerable<Patient>>(
-                    It.Is(mocks.PatientDtos, mocks.PatientDtoListEqualityComparer)
-                ),
-                Times.Once
-            );
-            mockController.AssertStatusIs(OperationStatus.Ok);
-            mockController.AssertValueIs(mocks.PatientDtos);
         }
 
         [Fact]
@@ -179,14 +179,6 @@ namespace RT1.Business.Tests
         }
 
         [Fact]
-        public async Task DeletePatient_ReturnsNotFoundForMissingPatient()
-        {
-            var outcome = await patientsService.DeletePatient(mocks.invalidId);
-            outcome.GetStatusCode(mockController);
-            mockController.AssertStatusIs(OperationStatus.NotFound);
-        }
-
-        [Fact]
         public async Task DeletePatient_ReturnsDeletedPatient()
         {
             var outcome = await patientsService.DeletePatient(mocks.validId);
@@ -202,6 +194,14 @@ namespace RT1.Business.Tests
                 dataProvider => dataProvider.DeletePatient(mocks.validId),
                 Times.Once
             );
+        }
+
+        [Fact]
+        public async Task DeletePatient_ReturnsNotFoundForMissingPatient()
+        {
+            var outcome = await patientsService.DeletePatient(mocks.invalidId);
+            outcome.GetStatusCode(mockController);
+            mockController.AssertStatusIs(OperationStatus.NotFound);
         }
     }
 }

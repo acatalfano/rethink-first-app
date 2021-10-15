@@ -8,13 +8,8 @@ namespace RT1.Configurations
     {
         public AutoMapperProfile()
         {
-            CreateMap<Patient, PatientDto>()
-                .ForMember(dto => dto.Gender, opt =>
-                {
-                    opt.PreCondition(entity => entity.Gender != null);
-                    opt.MapFrom(entity => entity.Gender.Label);
-                })
-                .ReverseMap();
+            CreateMap<Patient, PatientDto>().ReverseMap();
+            CreateMap<Gender, GenderDto>();
         }
     }
 }

@@ -21,7 +21,7 @@ export class PatientsEffects {
         )
     );
 
-    //TODO: error messages later
+    //TODO: add in error messages later
 
     public loadOneRequestEffect$ = createEffect(() =>
         this.actions$.pipe(
@@ -77,6 +77,18 @@ export class PatientsEffects {
             concatMap(({ id }) =>
                 this.patientsService.delete(id).pipe(
                     map(deletedPatient => patientsActions.deleteSuccessAction({ deletedPatient })),
+                    catchError((error: unknown) => of(errorAction(patientsActionText)({ message: '', error })))
+                )
+            )
+        )
+    );
+
+    public deleteBatchRequestEffect$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(patientsActions.deleteManyRequestAction),
+            concatMap(({ ids }) =>
+                this.patientsService.deleteBatch(ids).pipe(
+                    map(deletedPatients => patientsActions.deleteManySuccessAction({ deletedPatients })),
                     catchError((error: unknown) => of(errorAction(patientsActionText)({ message: '', error })))
                 )
             )

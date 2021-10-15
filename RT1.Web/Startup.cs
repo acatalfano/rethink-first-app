@@ -21,8 +21,8 @@ using RT1.Configurations;
 using RT1.Model.Objects;
 using RT1.Business;
 using RT1.Implementations.Services;
-using RT1.DataProviders;
 using RT1.Implementations.DataProviders;
+using RT1.DataProviders;
 
 namespace RT1.Web
 {
@@ -141,6 +141,7 @@ namespace RT1.Web
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });
         }

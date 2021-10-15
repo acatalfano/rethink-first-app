@@ -4,7 +4,7 @@ import { isNil as _isNil } from 'lodash-es';
 import { Observable } from 'rxjs';
 import { Patient } from 'app/model';
 import { patientsActions, PatientSelectors } from 'app/store';
-import { RootState } from 'app/store/root-state';
+import { RootState } from 'app/store/root.state';
 
 @Component({
     selector: 'rt1-patient-grid',

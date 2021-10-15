@@ -13,7 +13,7 @@ using RT1.DataProviders;
 using RT1.Model.Dtos;
 using RT1.Model.Objects.Entities;
 
-namespace RT1.Business.Tests.Mocks
+namespace RT1.Business.Tests.Providers
 {
     class PatientsServiceMocks
     {
@@ -29,15 +29,15 @@ namespace RT1.Business.Tests.Mocks
             }
         }
 
-        public Mock<IMapper> MapperMock
+        public Mock<IMapper> Mapper
         {
             get
             {
-                if (mapperMock == null)
+                if (mapper == null)
                 {
-                    mapperMock = buildMapperMock();
+                    mapper = buildMapperMock();
                 }
-                return mapperMock;
+                return mapper;
             }
         }
 
@@ -207,7 +207,7 @@ namespace RT1.Business.Tests.Mocks
         public readonly long invalidId = 10;
 
         private Mock<IPatientsDataProvider> dataProviderMock;
-        private Mock<IMapper> mapperMock;
+        private Mock<IMapper> mapper;
 
 
         private IEqualityComparer<Patient> patientEqualityComparer;

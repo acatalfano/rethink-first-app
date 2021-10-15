@@ -42,7 +42,9 @@
   <ItemGroup>
     <ProjectReference Include="..\RT1.Business\RT1.Business.csproj" />
     <ProjectReference Include="..\RT1.Configurations\RT1.Configurations.csproj" />
-    <ProjectReference Include="..\RT1.Implementations\RT1.Implementations.csproj" />
+    <ProjectReference Include="..\RT1.DataProviders\RT1.DataProviders.csproj" />
+    <ProjectReference Include="..\RT1.Implementations.DataProviders\RT1.Implementations.DataProviders.csproj" />
+    <ProjectReference Include="..\RT1.Implementations.Services\RT1.Implementations.Services.csproj" />
     <ProjectReference Include="..\RT1.Model.Objects\RT1.Model.Objects.csproj" />
   </ItemGroup>
 

@@ -33,11 +33,17 @@ export const patientsActions = {
         props<{ patients: Patient[] }>()
     ),
 
+    createOneRequestAction: createAction(`${patientsActionText} Create One Request`, props<{ patient: Patient }>()),
+    createOneSuccessAction: createAction(`${patientsActionText} Create One Success`, props<{ patient: Patient }>()),
+
     deleteRequestAction: createAction(`${patientsActionText} Delete Request`, props<{ id: number }>()),
-    deleteSuccessAction: createAction(`${patientsActionText} Delete Success`, props<{ deletedPatient: Patient }>())
+    deleteSuccessAction: createAction(`${patientsActionText} Delete Success`, props<{ deletedPatient: Patient }>()),
+
+    deleteManyRequestAction: createAction(`${patientsActionText} Delete Many Request`, props<{ ids: number[] }>()),
+    deleteManySuccessAction: createAction(
+        `${patientsActionText} Delete Many Success`,
+        props<{ deletedPatients: Patient[] }>()
+    )
 };
 
-//TODO: effects, reducer, selector, and common error (and do it more cleanly than Ben did!)
-//TODO: also fix that broken unit test
-//TODO: then the whole UI part of the front-end!!!!
-//TODO: AND FE UNIT TESTS!!!!!!!!!
+//TODO: a couple more backend methods now (post-one, and delete-many)

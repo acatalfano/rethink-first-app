@@ -18,7 +18,7 @@ namespace RT1.Configurations
             {
                 options.SwaggerDoc(description.GroupName, new Microsoft.OpenApi.Models.OpenApiInfo
                 {
-                    Title = "Rethink First - Patient Admin API",
+                    Title = "Rethink First App API",
                     Version = description.ApiVersion.ToString()
                 });
             }

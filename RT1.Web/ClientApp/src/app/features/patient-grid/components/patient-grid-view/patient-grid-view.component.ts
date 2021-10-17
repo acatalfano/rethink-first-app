@@ -11,6 +11,8 @@ import {
 import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { isNil as _isNil } from 'lodash-es';
 
+import { PatientBulkCrudService } from '../../services';
+
 import type { ColumnDescriptor } from './model/column-descriptor.interface';
 import type { TrackByFunction, IterableDiffer, DoCheck } from '@angular/core';
 import type { Patient } from 'app/model';
@@ -25,16 +27,6 @@ import type { RecursiveKeyOf } from 'app/utilities/types';
 export class PatientGridViewComponent implements DoCheck {
     @Output() public readonly deletePatient: EventEmitter<Patient> = new EventEmitter<Patient>();
     @Output() public readonly editPatient: EventEmitter<Patient> = new EventEmitter<Patient>();
-    @Output() public readonly multiSelectChange: EventEmitter<Patient[]> = new EventEmitter<Patient[]>();
-
-    //TODO: FILTERING TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-    //TODO: I guess it's not working.... see my OTHER comment in the HTML!
-
-    //TODO: selection and output selection
-    //TODO: add the "edit" capability! (conditioned on multiselect toggle)
-    //TODO: EVERYTHING that happens here needs to go through outputs, no logic here!
-
-    //TODO: SEE TODO IN THE HTML!!!!
 
     @Input()
     public set patientData(value: Patient[] | null) {
@@ -55,15 +47,8 @@ export class PatientGridViewComponent implements DoCheck {
         return this.multiselectModeValue;
     }
 
-    // TODO: can this just be a single input value?
     @Input()
-    public set tableDataLoading(value: boolean | null) {
-        this.tableDataLoadingValue = value;
-    }
-
-    public get tableDataLoading(): boolean | null {
-        return this.tableDataLoadingValue;
-    }
+    public tableDataLoading: boolean | null = false;
 
     public readonly dataColumnDescriptors: ColumnDescriptor[] = [
         { field: 'firstName', label: 'First Name' },
@@ -81,11 +66,14 @@ export class PatientGridViewComponent implements DoCheck {
     public readonly faTimes = faTimes;
     public readonly filterableFields: RecursiveKeyOf<Patient>[] = ['firstName', 'lastName'];
     private multiselectModeValue: boolean = false;
-    private tableDataLoadingValue: boolean | null = false;
     private differ?: IterableDiffer<Patient>;
     private patientDataValue: Patient[] | null = [];
 
-    constructor(private readonly cd: ChangeDetectorRef, private readonly iterDiffers: IterableDiffers) {}
+    constructor(
+        private readonly cd: ChangeDetectorRef,
+        private readonly iterDiffers: IterableDiffers,
+        private readonly bulkCrudService: PatientBulkCrudService
+    ) {}
 
     public ngDoCheck(): void {
         const diffs = this.differ?.diff(this.patientDataValue);
@@ -102,12 +90,8 @@ export class PatientGridViewComponent implements DoCheck {
         this.deletePatient.emit(patient);
     }
 
-    public onTogglePatientSelection(patient: Patient, selected: boolean): void {
-        //x
-    }
-
-    public onToggleSelectAll(selected: boolean): void {
-        //x
+    public onSelectionChange(selection: Patient[]): void {
+        this.bulkCrudService.replaceDeleteTargets(selection);
     }
 
     private readonly iterTrackBy: TrackByFunction<Patient> = (_index, patient) => patient.id;

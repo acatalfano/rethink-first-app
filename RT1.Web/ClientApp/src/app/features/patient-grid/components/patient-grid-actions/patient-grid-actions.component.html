@@ -1,4 +1,4 @@
-<p-tableCheckbox *ngIf="multiSelectMode; else singleSelectDisplay"></p-tableCheckbox>
+<p-tableCheckbox *ngIf="multiSelectMode; else singleSelectDisplay" [value]="checkboxValue"></p-tableCheckbox>
 
 <ng-template #singleSelectDisplay>
     <div class="d-flex">

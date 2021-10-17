@@ -2,6 +2,8 @@ import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input } from 
 
 import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import type { Patient } from 'app/model';
+
 @Component({
     selector: 'rt1-patient-grid-actions',
     templateUrl: './patient-grid-actions.component.html',
@@ -15,15 +17,12 @@ export class PatientGridActionsComponent {
     @Output()
     public readonly edit: EventEmitter<void> = new EventEmitter<void>();
 
-    @Output()
-    public readonly checkboxSelect: EventEmitter<boolean> = new EventEmitter<boolean>();
-
     @Input()
     public set multiSelectMode(value: boolean) {
         if (this.multiSelectModeValue !== value) {
             this.multiSelectModeValue = value;
             //TODO: vvv drop all the checkboxStateValue stuff if not used...
-            this.checkboxStateValue = false;
+            // this.checkboxState = false;
         }
     }
 
@@ -31,15 +30,13 @@ export class PatientGridActionsComponent {
         return this.multiSelectModeValue;
     }
 
-    public get checkboxState(): boolean {
-        return this.checkboxStateValue;
-    }
+    @Input()
+    public checkboxValue: Patient;
 
     public readonly faPencilAlt = faPencilAlt;
     public readonly faTimes = faTimes;
 
     private multiSelectModeValue: boolean = false;
-    private checkboxStateValue: boolean = false;
 
     public onDelete(): void {
         this.delete.emit();
@@ -47,10 +44,5 @@ export class PatientGridActionsComponent {
 
     public onEdit(): void {
         this.edit.emit();
-    }
-
-    public onCheckboxClick(): void {
-        this.checkboxStateValue = !this.checkboxStateValue;
-        this.checkboxSelect.emit(this.checkboxStateValue);
     }
 }

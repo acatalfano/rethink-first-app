@@ -15,7 +15,18 @@
     </div>
 
     <div class="d-flex bulk-action-footer mb-5">
-        <button mat-flat-button class="ms-auto me-3" [color]="'primary'">APPLY EDITS</button>
-        <button mat-flat-button class="mx-3" [color]="'warn'">DELETE SELECTION</button>
+        <ng-container *ngIf="multiSelect.checked">
+            <button
+                mat-flat-button
+                class="ms-auto me-3"
+                [color]="'primary'"
+                [disabled]="patientsAreMarkedForUpdate$ | async"
+            >
+                APPLY EDITS
+            </button>
+            <button mat-flat-button class="mx-3" [color]="'warn'" [disabled]="patientsAreMarkedForDeletion$ | async">
+                DELETE SELECTION
+            </button>
+        </ng-container>
     </div>
 </div>

@@ -19,6 +19,31 @@ describe('PatientGridComponent', () => {
     });
 
     it('should create', () => {
+        expect.hasAssertions();
         expect(component).toBeTruthy();
+    });
+
+    it.todo('should get patient data');
+
+    it.todo('should get patient data loading state');
+
+    describe('bulk delete', () => {
+        it.todo('should disable when no selections');
+
+        it.todo('should enable when a selection is made');
+
+        it.todo('should stay enabled after subsequent selections are made');
+
+        it.todo('should open delete confirmation dialog');
+    });
+
+    describe('bulk edit', () => {
+        it.todo('should disable when no changes');
+
+        it.todo('should enable when a change is made');
+
+        it.todo('should stay enabled after subsequent changes are made');
+
+        it.todo('should open update confirmation dialog');
     });
 });

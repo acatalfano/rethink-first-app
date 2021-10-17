@@ -62,7 +62,6 @@ module.exports = {
         'no-bitwise': 'error',
         'no-caller': 'error',
         'no-cond-assign': 'error',
-        'no-confusing-arrow': ['error', { allowParens: false }],
         'no-console': ['error', { allow: ['error'] }],
         'no-constructor-return': 'error',
         'no-continue': 'error',

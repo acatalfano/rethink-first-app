@@ -1,5 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
+
 import { initLoad, endLoad } from '../store-utilities/common';
+
 import { patientsActions } from './patients.actions';
 import { initialState, patientsAdapter } from './patients.state';
 

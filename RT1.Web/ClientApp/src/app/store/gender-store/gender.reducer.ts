@@ -1,13 +1,23 @@
 import { createReducer, on } from '@ngrx/store';
 import { negate as _negate, isNil as _isNil, uniqBy as _uniqBy } from 'lodash-es';
+
+import { isDefined } from 'app/utilities/assertions';
+
 import { patientsActions } from '../patients-store';
 import { initLoad, endLoad } from '../store-utilities/common';
+
 import { initialState, gendersAdapter } from './gender.state';
 
 import type { Gender, Patient } from 'app/model';
 
 const extractGenderData = (patients: Patient[]): Gender[] =>
-    _uniqBy(patients?.filter(_negate(_isNil))?.map(({ gender }) => gender) ?? [], 'id');
+    _uniqBy(
+        patients
+            ?.filter(_negate(_isNil))
+            ?.map(({ gender }) => gender)
+            ?.filter(isDefined) ?? [],
+        'id'
+    );
 
 export const reducer = createReducer(
     initialState,
@@ -27,6 +37,6 @@ export const reducer = createReducer(
         gendersAdapter.upsertMany(extractGenderData(patients), endLoad(state))
     ),
     on(patientsActions.loadOneSuccessAction, patientsActions.updateOneSuccessAction, (state, { patient }) =>
-        gendersAdapter.upsertOne(patient?.gender, endLoad(state))
+        gendersAdapter.upsertMany(extractGenderData([patient]), endLoad(state))
     )
 );

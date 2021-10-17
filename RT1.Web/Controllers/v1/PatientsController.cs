@@ -18,6 +18,7 @@ namespace RT1.Web.Controllers.v1
         {
             this.patientsService = patientsService;
         }
+
         // GET: api/v1/Patients
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PatientDto>>> GetAllPatients()

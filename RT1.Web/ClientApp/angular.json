@@ -11,7 +11,8 @@
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
-                    "style": "scss"
+                    "style": "scss",
+                    "changeDetection": "OnPush"
                 },
                 "@schematics/angular:application": {
                     "strict": true
@@ -31,16 +32,24 @@
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/assets/sass/main.scss"],
-                        "scripts": []
+                        "styles": [
+                            "node_modules/primeng/resources/themes/saga-blue/theme.css",
+                            "node_modules/primeng/resources/primeng.min.css",
+                            "node_modules/primeicons/primeicons.css",
+                            "src/assets/sass/main.scss"
+                        ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/assets/sass/abstracts"]
+                        },
+                        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
                     },
                     "configurations": {
                         "production": {
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
+                                    "maximumWarning": "1.5mg",
+                                    "maximumError": "2mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
@@ -94,7 +103,8 @@
                 "lint": {
                     "builder": "@angular-eslint/builder:lint",
                     "options": {
-                        "lintFilePatterns": ["src/**/*.ts", "src/**/*.html", "src/**/*.js"]
+                        "lintFilePatterns": ["src/**/*.ts", "src/**/*.html", "src/**/*.js"],
+                        "fix": true
                     }
                 }
             }

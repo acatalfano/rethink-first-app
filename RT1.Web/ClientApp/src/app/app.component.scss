@@ -1,0 +1,20 @@
+@import 'colors';
+@import 'sizes';
+
+.header {
+    height: $main-header-height;
+    background: $rt1-header;
+    color: $gray100;
+
+    h1 {
+        font-size: 4em;
+    }
+}
+
+.main {
+    height: calc(100vh - #{$main-header-height});
+}
+
+.offset {
+    width: 30%;
+}

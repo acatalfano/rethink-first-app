@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,8 +10,13 @@ import { RootStoreModule } from './store/root-store.module';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [AppRoutingModule, BrowserModule, RootStoreModule, StoreDevtoolsModule.instrument()],
-    providers: [],
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        RootStoreModule,
+        StoreDevtoolsModule.instrument()
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

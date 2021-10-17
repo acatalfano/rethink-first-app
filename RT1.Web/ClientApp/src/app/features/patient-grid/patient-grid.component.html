@@ -1,0 +1,21 @@
+<div class="max-h-inherit d-flex flex-column w-75 m-auto">
+    <div class="d-flex justify-content-between multiselect-header mt-5">
+        <ng-content></ng-content>
+        <mat-slide-toggle #multiSelect class="ms-auto"></mat-slide-toggle>
+    </div>
+
+    <div class="grid-display">
+        <rt1-patient-grid-view
+            class="max-h-inherit"
+            [patientData]="patientsData$ | async"
+            [tableDataLoading]="patientsLoading$ | async"
+            [multiselectMode]="multiSelect.checked"
+        >
+        </rt1-patient-grid-view>
+    </div>
+
+    <div class="d-flex bulk-action-footer mb-5">
+        <button mat-flat-button class="ms-auto me-3" [color]="'primary'">APPLY EDITS</button>
+        <button mat-flat-button class="mx-3" [color]="'warn'">DELETE SELECTION</button>
+    </div>
+</div>

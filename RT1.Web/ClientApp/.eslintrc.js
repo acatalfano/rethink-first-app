@@ -13,14 +13,27 @@ module.exports = {
         },
         {
             files: ['*.component.html'],
-            extends: ['plugin:@angular-eslint/template/recommended'],
+            extends: ['plugin:@angular-eslint/template/recommended']
+        },
+        {
+            files: ['*.component.html'],
+            excludedFiles: ['*inline-template-*.component.html'],
+            extends: ['plugin:prettier/recommended'],
             rules: {
-                'max-len': 'off'
+                'prettier/prettier': ['error', { parser: 'angular' }]
+            }
+        },
+        {
+            files: ['setup-jest.ts'],
+            parser: '@typescript-eslint/parser',
+            parserOptions: {
+                tsconfigRootDir: __dirname,
+                project: `${__dirname}/tsconfig.json`
             }
         },
         {
             files: ['*.ts'],
-            excludedFiles: ['*.spec.ts', '*-spec.ts'],
+            excludedFiles: ['*.spec.ts', '*-spec.ts', 'setup-jest.ts'],
             extends: ['./eslint-configs/eslintrc-ts'],
             parserOptions: {
                 tsconfigRootDir: __dirname,
@@ -28,7 +41,8 @@ module.exports = {
             },
             rules: {
                 // TODO: revisit why this is misbehaving
-                'import/no-unused-modules': 'off'
+                'import/no-unused-modules': 'off',
+                'rxjs/finnish': 'off'
             }
         },
         {
@@ -54,6 +68,12 @@ module.exports = {
             rules: {
                 'import/no-unused-modules': 'off',
                 'import/no-unassigned-import': 'off'
+            }
+        },
+        {
+            files: ['**/*.module.ts'],
+            rules: {
+                '@typescript-eslint/promise-function-async': 'off'
             }
         }
     ]

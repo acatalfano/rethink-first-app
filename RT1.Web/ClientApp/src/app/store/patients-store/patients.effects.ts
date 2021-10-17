@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+
 import { catchError, concatMap, map } from 'rxjs/operators';
+
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 
 import { errorAction } from '../error-store/error.actions';
+
 import { patientsActions, patientsActionText } from './patients.actions';
 import { PatientsService } from './patients.service';
 
@@ -21,7 +24,7 @@ export class PatientsEffects {
         )
     );
 
-    //TODO: add in error messages later
+    // TODO: add in error messages later
 
     public loadOneRequestEffect$ = createEffect(() =>
         this.actions$.pipe(
@@ -95,7 +98,7 @@ export class PatientsEffects {
         )
     );
 
-    //TODO: also will want to handle success effects with a toast/etc
+    // TODO: also will want to handle success effects with a toast/etc
 
     constructor(private readonly patientsService: PatientsService, private readonly actions$: Actions) {}
 }

@@ -6,4 +6,4 @@ export const endLoad = <T>(state: BaseState<T>): BaseState<T> => ({ ...state, is
 
 export const getError = <T>(state: BaseState<T>): unknown => state.error;
 
-export const isLoading = <T>(state: BaseState<T>): boolean => state.isLoading;
+export const getLoadingState = <T, S extends BaseState<T>>(state: S): boolean => state.isLoading;

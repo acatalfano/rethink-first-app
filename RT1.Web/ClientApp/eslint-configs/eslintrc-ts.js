@@ -2,7 +2,7 @@
 
 /* eslint-disable no-magic-numbers */
 module.exports = {
-    plugins: ['@angular-eslint', 'jsdoc'],
+    plugins: ['@angular-eslint', 'jsdoc', 'rxjs'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 6,
@@ -70,7 +70,16 @@ module.exports = {
         ],
         'dot-notation': 'off',
         '@typescript-eslint/dot-notation': 'error',
-        '@typescript-eslint/explicit-function-return-type': 'error',
+        '@typescript-eslint/explicit-function-return-type': [
+            'error',
+            {
+                allowExpressions: true,
+                allowTypedFunctionExpressions: true,
+                allowHigherOrderFunctions: true,
+                allowDirectConstAssertionInArrowFunctions: true,
+                allowConciseArrowFunctionExpressionsStartingWithVoid: true
+            }
+        ],
         '@typescript-eslint/explicit-member-accessibility': [
             'error',
             {
@@ -233,7 +242,19 @@ module.exports = {
                 lib: 'always'
             }
         ],
-        '@typescript-eslint/unified-signatures': 'error'
+        '@typescript-eslint/unified-signatures': 'error',
+        'rxjs/finnish': [
+            'error',
+            {
+                functions: false,
+                methods: false,
+                parameters: false,
+                properties: false,
+                variables: true
+            }
+        ],
+        'rxjs/no-unsafe-switchmap': 'error',
+        'rxjs/no-unsafe-takeuntil': 'error'
     },
     settings: {
         jsdoc: {

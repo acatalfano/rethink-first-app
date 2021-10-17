@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { BaseNetworkService } from '../network-common/base-network.service';
 
 import type { Patient } from 'app/model';

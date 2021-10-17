@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import type { Patient } from 'app/model';
 
 export const patientsActionText = '[PatientsAction]';
@@ -46,4 +47,4 @@ export const patientsActions = {
     )
 };
 
-//TODO: a couple more backend methods now (post-one, and delete-many)
+// TODO: a couple more backend methods now (post-one, and delete-many)

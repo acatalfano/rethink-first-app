@@ -1,3 +1,5 @@
+import { isNil as _isNil } from 'lodash-es';
+
 import { Gender } from './gender';
 
 export class Patient {
@@ -6,7 +8,7 @@ export class Patient {
     public lastName: string;
     public genderId: number;
     public birthday: Date;
-    public gender: Gender;
+    public gender?: Gender;
 
     constructor(other: Patient) {
         this.id = other?.id;
@@ -14,6 +16,8 @@ export class Patient {
         this.lastName = other?.lastName;
         this.genderId = other?.genderId;
         this.birthday = other?.birthday;
-        this.gender = new Gender(other?.gender);
+        if (!_isNil(other?.gender)) {
+            this.gender = new Gender(other?.gender);
+        }
     }
 }

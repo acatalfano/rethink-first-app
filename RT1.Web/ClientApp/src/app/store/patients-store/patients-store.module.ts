@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+
 import { PatientsEffects } from './patients.effects';
 import { reducer } from './patients.reducer';
 import { PatientsService } from './patients.service';

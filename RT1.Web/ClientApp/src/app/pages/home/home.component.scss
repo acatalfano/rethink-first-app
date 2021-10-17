@@ -1,0 +1,8 @@
+@import 'sizes';
+@import 'colors';
+
+.home-content {
+    max-height: calc(100vh - #{$main-header-height});
+    // background-color: $gray400;
+    //background-color: #105f7e;
+}

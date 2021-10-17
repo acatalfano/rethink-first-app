@@ -1,0 +1,12 @@
+<p-tableCheckbox *ngIf="multiSelectMode; else singleSelectDisplay"></p-tableCheckbox>
+
+<ng-template #singleSelectDisplay>
+    <div class="d-flex">
+        <button mat-icon-button class="ms-auto me-1" (click)="onEdit()">
+            <fa-icon [icon]="faPencilAlt"></fa-icon>
+        </button>
+        <button mat-icon-button class="ms-1 me-auto" (click)="onDelete()">
+            <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
+    </div>
+</ng-template>

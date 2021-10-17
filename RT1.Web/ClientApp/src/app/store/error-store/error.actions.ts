@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import type { TypedAction } from '@ngrx/store/src/models';
 
 interface ErrorActionProps {

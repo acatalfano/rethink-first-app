@@ -1,11 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+
 import { select, Store } from '@ngrx/store';
 import { isNil as _isNil } from 'lodash-es';
 import { Observable } from 'rxjs';
+
 import { Patient } from 'app/model';
 import { patientsActions, PatientSelectors } from 'app/store';
 import { RootState } from 'app/store/root.state';
 
+/**
+ * N.B: to finish making this fully reusable, patient-grid-view.component
+ *      must be updated to hide the top <tr> in the header when no
+ *      <ng-content> is passed in
+ */
 @Component({
     selector: 'rt1-patient-grid',
     templateUrl: './patient-grid.component.html',
@@ -13,6 +20,9 @@ import { RootState } from 'app/store/root.state';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PatientGridComponent {
+    @HostBinding('class')
+    public readonly klass: string = 'max-h-inherit';
+
     public get patientsData$(): Observable<Patient[]> {
         if (_isNil(this.patientsDataValue$)) {
             this.patientsDataValue$ = this.acquirePatientsData$();
@@ -20,7 +30,15 @@ export class PatientGridComponent {
         return this.patientsDataValue$;
     }
 
-    private patientsDataValue$!: Observable<Patient[]>;
+    public get patientsLoading$(): Observable<boolean> {
+        if (_isNil(this.patientsLoadingValue$)) {
+            this.patientsLoadingValue$ = this.store$.pipe(select(PatientSelectors.isLoading));
+        }
+        return this.patientsLoadingValue$;
+    }
+
+    private patientsDataValue$: Observable<Patient[]>;
+    private patientsLoadingValue$: Observable<boolean>;
 
     constructor(private readonly store$: Store<RootState>) {}
 

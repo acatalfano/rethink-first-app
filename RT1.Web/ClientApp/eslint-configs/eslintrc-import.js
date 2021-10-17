@@ -4,11 +4,17 @@ module.exports = {
     plugins: ['import'],
     extends: ['plugin:import/recommended'],
     rules: {
-        'import/exports-last': 'error',
-        'import/extensions': 'error',
-        'import/first': 'error',
-        'import/max-dependencies': 'error',
-        'import/newline-after-import': 'error',
+        'import/extensions': 'warn',
+        'import/first': 'warn',
+        'import/max-dependencies': [
+            'error',
+            {
+                // eslint-disable-next-line no-magic-numbers
+                max: 15,
+                ignoreTypeImports: true
+            }
+        ],
+        'import/newline-after-import': 'warn',
         'import/no-absolute-path': 'error',
         'import/no-cycle': [
             'error',
@@ -19,8 +25,8 @@ module.exports = {
             }
         ],
         'import/no-default-export': 'error',
-        'import/no-deprecated': 'error',
-        'import/no-dynamic-require': 'error',
+        'import/no-deprecated': 'warn',
+        'import/no-dynamic-require': 'warn',
         'import/no-extraneous-dependencies': 'error',
         'import/no-mutable-exports': 'error',
         'import/no-named-default': 'error',
@@ -30,7 +36,7 @@ module.exports = {
         'import/no-self-import': 'error',
         'import/no-unassigned-import': ['error', { allow: ['jest-preset-angular', 'zone.js/dist/zone'] }],
         'import/no-unused-modules': [
-            'error',
+            'warn',
             {
                 missingExports: true,
                 unusedExports: true,
@@ -38,14 +44,14 @@ module.exports = {
             }
         ],
         'import/no-useless-path-segments': [
-            'error',
+            'warn',
             {
                 noUselessIndex: true
             }
         ],
         'import/no-webpack-loader-syntax': 'error',
         'import/order': [
-            'error',
+            'warn',
             {
                 groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
                 pathGroups: [
@@ -61,7 +67,7 @@ module.exports = {
                     }
                 ],
                 pathGroupsExcludedImportTypes: ['type'],
-                //'newlines-between': 'always',
+                'newlines-between': 'always',
                 alphabetize: {
                     order: 'asc',
                     caseInsensitive: true

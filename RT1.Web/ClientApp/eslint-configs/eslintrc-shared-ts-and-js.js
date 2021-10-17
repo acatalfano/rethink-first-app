@@ -39,7 +39,7 @@ module.exports = {
         ],
         'id-match': 'error',
         'lines-around-comment': [
-            'error',
+            'warn',
             {
                 beforeBlockComment: true,
                 beforeLineComment: true,
@@ -121,20 +121,20 @@ module.exports = {
         'one-var': ['error', 'never'],
         'operator-assignment': 'error',
         'prefer-const': 'error',
-        'prefer-destructuring': [
-            'error',
-            {
-                VariableDeclarator: {
-                    array: true,
-                    object: true
-                },
-                AssignmentExpression: {
-                    array: true,
-                    object: true
-                }
-            },
-            { enforceForRenamedProperties: true }
-        ],
+        // 'prefer-destructuring': [
+        //     'error',
+        //     {
+        //         VariableDeclarator: {
+        //             array: true,
+        //             object: true
+        //         },
+        //         AssignmentExpression: {
+        //             array: false,
+        //             object: false
+        //         }
+        //     },
+        //     { enforceForRenamedProperties: true }
+        // ],
         'prefer-numeric-literals': 'error',
         'prefer-promise-reject-errors': 'error',
         'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],

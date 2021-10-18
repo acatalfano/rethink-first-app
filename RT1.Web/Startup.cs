@@ -23,35 +23,42 @@ using RT1.Business;
 using RT1.Implementations.Services;
 using RT1.Implementations.DataProviders;
 using RT1.DataProviders;
+using NLog.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace RT1.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostEnvironment)
         {
             Configuration = configuration;
+            HostEnvironment = hostEnvironment;
+            AppSettings = Configuration.GetSection(AppSettingsConfigKeys.AppSettingsKey).Get<Rt1AppSettings>();
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
+        private IWebHostEnvironment HostEnvironment { get; }
+        private Rt1AppSettings AppSettings { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
-
-            var connectionStrings = Configuration
-                .GetSection(AppSettingsConfigKeys.ConnectionStringsKey)
-                .Get<ConnectionStringsConfig>();
-            services.AddSingleton(connectionStrings);
-
-            services.AddDbContext<Rt1DbContext>(opt =>
+            services.AddLogging(config =>
             {
-                opt.UseSqlServer(connectionStrings.Rt1Model);
+                config.AddNLog();
             });
-            services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.AllowTrailingCommas = true;
+                    options.JsonSerializerOptions.MaxDepth = 15;
+                });
+
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -73,24 +80,43 @@ namespace RT1.Web
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
 
-            services.AddSwaggerGen(opt =>
-            {
-                opt.IncludeXmlComments(XmlCommentsFilePath);
-            });
+            var connectionStrings = Configuration
+                .GetSection(AppSettingsConfigKeys.ConnectionStringsKey)
+                .Get<ConnectionStringsConfig>();
+            services.AddSingleton(connectionStrings);
 
-            //services.AddMvc()
-            //    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-            //    .AddJsonOptions(options =>
-            //    {
-            //        options.JsonSerializerOptions.AllowTrailingCommas = true;
-            //        options.JsonSerializerOptions.MaxDepth = 15;
-            //    });
 
-            // Business Services
+            services.AddDbContext<Rt1DbContext>(
+                opt =>
+                    {
+                        opt.UseSqlServer(connectionStrings.Rt1Model);
+                        opt.ConfigureWarnings(opt => opt.Ignore(CoreEventId.StartedTracking));
+                        opt.EnableDetailedErrors(AppSettings.EnableDetailedEfErrors);
+                    },
+                ServiceLifetime.Transient
+            );
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
+
+            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+
+            /////////////////////////////////////////////////////////////
+            //////// Business Services //////////////////////////////////
+            /////////////////////////////////////////////////////////////
             services.AddScoped<IPatientsService, PatientsService>();
 
-            // Data Providers
+            /////////////////////////////////////////////////////////////
+            //////// Data Providers /////////////////////////////////////
+            /////////////////////////////////////////////////////////////
             services.AddScoped<IPatientsDataProvider, PatientsDataProvider>();
+
+            if (HostEnvironment.IsDevelopment())
+            {
+                services.AddSwaggerGen(opt =>
+                {
+                    opt.IncludeXmlComments(XmlCommentsFilePath);
+                });
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -125,7 +151,10 @@ namespace RT1.Web
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("default");
+
             app.UseStaticFiles();
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +9,8 @@ using RT1.Web.Controllers.Extensions;
 
 namespace RT1.Web.Controllers.v1
 {
-    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class PatientsController : ControllerBase
     {
         private readonly IPatientsService patientsService;

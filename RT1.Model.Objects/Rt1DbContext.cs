@@ -13,18 +13,10 @@ namespace RT1.Model.Objects
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Gender>(gender =>
-            {
-                //TODO: clear this out if you figure out why it's not working...
-                //TODO: likewise for the attributes in the class declarations
-                //gender.Property(thisGender => thisGender.Id)
-                //    .ValueGeneratedOnAdd();
-            });
+            modelBuilder.Entity<Gender>();
 
             modelBuilder.Entity<Patient>(patient =>
             {
-                //patient.Property(thisPatient => thisPatient.Id)
-                //    .ValueGeneratedOnAdd();
                 patient.HasOne(thisPatient => thisPatient.Gender)
                     .WithMany(gender => gender.Patients)
                     .HasForeignKey(patient => patient.GenderId);

@@ -3,5 +3,6 @@
     public static class AppSettingsConfigKeys
     {
         public const string ConnectionStringsKey = "ConnectionStrings";
+        public const string AppSettingsKey = "AppSettings";
     }
 }

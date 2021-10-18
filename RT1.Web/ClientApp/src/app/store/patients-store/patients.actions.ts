@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { Patient } from 'app/model';
+import type { NoIdPatient, Patient } from 'app/model';
 
 export const patientsActionText = '[PatientsAction]';
 export const patientsActions = {
@@ -27,7 +27,7 @@ export const patientsActions = {
 
     createBatchRequestAction: createAction(
         `${patientsActionText} Create Batch Request`,
-        props<{ patients: Patient[] }>()
+        props<{ patients: NoIdPatient[] }>()
     ),
     createBatchSuccessAction: createAction(
         `${patientsActionText} Create Batch Success`,

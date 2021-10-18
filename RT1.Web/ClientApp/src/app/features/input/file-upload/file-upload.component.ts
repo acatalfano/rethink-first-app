@@ -6,17 +6,17 @@ import { select, Store } from '@ngrx/store';
 import { isNil as _isNil, uniq as _uniq, zip as _zip } from 'lodash-es';
 import { AsyncSubject, from } from 'rxjs';
 
-import { Gender, Patient } from 'app/model';
+import { Gender, NoIdPatient } from 'app/model';
 import { patientsActions } from 'app/store';
 import { GenderSelectors } from 'app/store/gender-store';
 import { RootState } from 'app/store/root.state';
 
 interface HeaderCell {
-    key: keyof Patient;
+    key: keyof NoIdPatient;
     typeMapper: (_: string) => unknown;
 }
 
-type PartialPatient = Omit<Patient, 'gender'> & { genderLabel: string };
+type PartialPatient = Omit<NoIdPatient, 'gender'> & { genderLabel: string };
 
 @Component({
     selector: 'rt1-file-upload',
@@ -75,7 +75,7 @@ export class FileUploadComponent implements OnDestroy {
                             ...partialPatient,
                             gender: gendersMap.get(partialPatient.genderLabel.toLowerCase()) ?? Gender.nullObject
                         }))
-                        .map(patient => new Patient(patient));
+                        .map(patient => new NoIdPatient(patient));
 
                     this.store$.dispatch(patientsActions.createBatchRequestAction({ patients }));
                 }
@@ -118,7 +118,6 @@ export class FileUploadComponent implements OnDestroy {
                 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
                 {} as PartialPatient
             );
-            // eslint-disable-next-line no-else-return
         } else {
             throw new Error('fields and values were not the same length when passed to "buildPatient"');
         }

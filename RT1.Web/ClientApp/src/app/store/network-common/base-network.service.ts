@@ -34,7 +34,7 @@ export abstract class BaseNetworkService<T> {
     public readonly post = (newItem: T, headers: HttpHeaders = this.jsonHeaders): Observable<T> =>
         this.isBusy(this.httpClient.post<T>(this.endpoint(), newItem, { headers }));
 
-    public readonly postBatch = (newItems: T[], headers: HttpHeaders = this.jsonHeaders): Observable<T[]> =>
+    public readonly postBatch = <U = T>(newItems: U[], headers: HttpHeaders = this.jsonHeaders): Observable<T[]> =>
         this.isBusy(this.httpClient.post<T[]>(this.endpoint(this.batchUrlFragment), newItems, { headers }));
 
     public readonly delete = (id: string | number, headers = new HttpHeaders()): Observable<T> =>

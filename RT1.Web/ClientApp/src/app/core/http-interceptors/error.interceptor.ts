@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { tap } from 'rxjs/operators';
+
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -14,10 +16,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 () => {},
                 err => {
                     if (err instanceof HttpErrorResponse) {
-                        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                        if (err.status === 401) {
-                            this.router.navigateByUrl('/');
-                        }
+                        this.router.navigateByUrl('/error');
                     }
                 }
             )

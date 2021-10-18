@@ -46,7 +46,7 @@ namespace RT1.Web.Controllers.v1
 
         // GET api/v1/Patients/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PatientDto>> GetPatientById(long id)
+        public async Task<ActionResult<PatientDto>> GetPatientById(int id)
         {
             // N.B.: no specific use-case right now, but it's a matter of time for this one
             //          -- get-by-id is fairly standard
@@ -56,7 +56,7 @@ namespace RT1.Web.Controllers.v1
 
         // PUT api/v1/Patients/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<PatientDto>> UpdatePatient(long id, [FromBody] PatientDto patient)
+        public async Task<ActionResult<PatientDto>> UpdatePatient(int id, [FromBody] PatientDto patient)
         {
             var result = await patientsService.UpdatePatient(id, patient);
             return this.GetStatusCode(result);
@@ -64,7 +64,7 @@ namespace RT1.Web.Controllers.v1
 
         // DELETE api/v1/Patients/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<PatientDto>> DeletePatient(long id)
+        public async Task<ActionResult<PatientDto>> DeletePatient(int id)
         {
             var result = await patientsService.DeletePatient(id);
             return this.GetStatusCode(result);

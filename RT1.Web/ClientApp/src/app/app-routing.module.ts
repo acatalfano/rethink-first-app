@@ -14,6 +14,11 @@ const routes: Routes = [
         path: '',
         redirectTo: '/home',
         pathMatch: 'full'
+    },
+    {
+        path: 'error',
+        loadChildren: () =>
+            import('./pages/fallback-error-page/fallback-error-page.module').then(m => m.FallbackErrorPageModule)
     }
 ];
 

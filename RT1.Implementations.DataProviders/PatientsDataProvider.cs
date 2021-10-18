@@ -24,7 +24,7 @@ namespace RT1.Implementations.DataProviders
                 .Include(patient => patient.Gender)
                 .ToListAsync();
 
-        public async Task<Patient> GetPatientById(long id) =>
+        public async Task<Patient> GetPatientById(int id) =>
             await dbContext.Patients
                 .Include(patient => patient.Gender)
                 .FirstOrDefaultAsync(patient => patient.Id == id);
@@ -66,7 +66,7 @@ namespace RT1.Implementations.DataProviders
             return updates;
         }
 
-        public async Task<Patient> DeletePatient(long id)
+        public async Task<Patient> DeletePatient(int id)
         {
             Patient targetPatient = await dbContext.Patients
                 .Include(patient => patient.Gender)

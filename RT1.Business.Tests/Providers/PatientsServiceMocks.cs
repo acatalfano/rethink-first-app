@@ -203,8 +203,8 @@ namespace RT1.Business.Tests.Providers
             }
         }
 
-        public readonly long validId = 5;
-        public readonly long invalidId = 10;
+        public readonly int validId = 5;
+        public readonly int invalidId = 10;
 
         private Mock<IPatientsDataProvider> dataProviderMock;
         private Mock<IMapper> mapper;
@@ -224,9 +224,9 @@ namespace RT1.Business.Tests.Providers
             Mock<IPatientsDataProvider> mock = new Mock<IPatientsDataProvider>();
             mock.Setup(dataProvider => dataProvider.GetAllPatients())
                 .ReturnsAsync(PatientEntities);
-            mock.Setup(dataProvider => dataProvider.GetPatientById(It.Is<long>(id => id == validId)))
+            mock.Setup(dataProvider => dataProvider.GetPatientById(It.Is<int>(id => id == validId)))
                 .ReturnsAsync(TargetPatientEntity);
-            mock.Setup(dataProvider => dataProvider.GetPatientById(It.Is<long>(id => id == invalidId)))
+            mock.Setup(dataProvider => dataProvider.GetPatientById(It.Is<int>(id => id == invalidId)))
                 .ReturnsAsync(default(Patient));
 
             mock.Setup(dataProvider => dataProvider.CreateManyPatients(It.IsAny<IEnumerable<Patient>>()))
@@ -253,11 +253,11 @@ namespace RT1.Business.Tests.Providers
                 )
             ).ThrowsAsync(new DbUpdateException());
 
-            mock.Setup(dataProvider => dataProvider.DeletePatient(It.IsAny<long>()))
+            mock.Setup(dataProvider => dataProvider.DeletePatient(It.IsAny<int>()))
                 .ReturnsAsync(TargetPatientEntity);
             mock.Setup(dataProvider =>
                 dataProvider.DeletePatient(
-                    It.Is<long>(id => id == invalidId)
+                    It.Is<int>(id => id == invalidId)
                 )
             ).ThrowsAsync(new DbUpdateException());
 

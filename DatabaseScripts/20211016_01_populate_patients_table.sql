@@ -61,6 +61,7 @@ VALUES
   ('Judith','Holland',1,'1997-06-05'),
   ('Keelie','Flowers',1,'2016-12-14'),
   ('Ferris','Johns',0,'1951-01-22');
+GO
 
 INSERT INTO [dbo].[Patients](FirstName,LastName,GenderId,Birthday)
 VALUES
@@ -114,3 +115,4 @@ VALUES
   ('Yvonne','Malone',1,'1987-03-21'),
   ('Maryam','Stanley',1,'1966-10-19'),
   ('Murphy','Horn',0,'1995-10-03');
+GO

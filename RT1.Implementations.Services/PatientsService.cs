@@ -43,7 +43,7 @@ namespace RT1.Implementations.Services
             return outcome;
         }
 
-        public async Task<OperationOutcome<PatientDto>> GetPatientById(long id)
+        public async Task<OperationOutcome<PatientDto>> GetPatientById(int id)
         {
             OperationOutcome<PatientDto> outcome = new OperationOutcome<PatientDto>();
             try
@@ -103,7 +103,7 @@ namespace RT1.Implementations.Services
             return outcome;
         }
 
-        public async Task<OperationOutcome<PatientDto>> UpdatePatient(long id, PatientDto patient)
+        public async Task<OperationOutcome<PatientDto>> UpdatePatient(int id, PatientDto patient)
         {
             OperationOutcome<PatientDto> outcome = new OperationOutcome<PatientDto>();
             try
@@ -124,7 +124,7 @@ namespace RT1.Implementations.Services
             return outcome;
         }
 
-        public async Task<OperationOutcome<PatientDto>> DeletePatient(long id)
+        public async Task<OperationOutcome<PatientDto>> DeletePatient(int id)
         {
             OperationOutcome<PatientDto> outcome = new OperationOutcome<PatientDto>();
             try

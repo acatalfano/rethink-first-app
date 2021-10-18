@@ -38,6 +38,19 @@ namespace RT1.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+
+            var connectionStrings = Configuration
+                .GetSection(AppSettingsConfigKeys.ConnectionStringsKey)
+                .Get<ConnectionStringsConfig>();
+            services.AddSingleton(connectionStrings);
+
+            services.AddDbContext<Rt1DbContext>(opt =>
+            {
+                opt.UseSqlServer(connectionStrings.Rt1Model);
+            });
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -63,18 +76,6 @@ namespace RT1.Web
             services.AddSwaggerGen(opt =>
             {
                 opt.IncludeXmlComments(XmlCommentsFilePath);
-            });
-
-            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
-
-            var connectionStrings = Configuration
-                .GetSection(AppSettingsConfigKeys.ConnectionStringsKey)
-                .Get<ConnectionStringsConfig>();
-            services.AddSingleton(connectionStrings);
-
-            services.AddDbContext<Rt1DbContext>(opt =>
-            {
-                opt.UseSqlServer(connectionStrings.Rt1Model);
             });
 
             //services.AddMvc()

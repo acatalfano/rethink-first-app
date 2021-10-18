@@ -15,13 +15,15 @@ export class DateInterceptor implements HttpInterceptor {
     public intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         const mimeType = req.detectContentTypeHeader();
 
-        // TODO: only continue if expected MIME type
-        const { body } = req;
-        const copy = _cloneDeep(body);
-        const nextRequest = req.clone({
-            body: this.walkBody(copy)
-        });
-        return next.handle(nextRequest);
+        if (mimeType?.toLowerCase() === 'application/json') {
+            const copy = _cloneDeep(req.body);
+            const nextRequest = req.clone({
+                body: this.walkBody(copy)
+            });
+            return next.handle(nextRequest);
+        } else {
+            return next.handle(req);
+        }
     }
 
     private walkBody(body: unknown): unknown {

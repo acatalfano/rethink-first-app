@@ -20,7 +20,7 @@ module.exports = {
             excludedFiles: ['*inline-template-*.component.html'],
             extends: ['plugin:prettier/recommended'],
             rules: {
-                'prettier/prettier': ['error', { parser: 'angular' }]
+                'prettier/prettier': ['warn', { parser: 'angular' }]
             }
         },
         {
@@ -74,6 +74,12 @@ module.exports = {
             files: ['**/*.module.ts'],
             rules: {
                 '@typescript-eslint/promise-function-async': 'off'
+            }
+        },
+        {
+            files: ['**/*.ts'],
+            rules: {
+                'prettier/prettier': 'warn'
             }
         }
     ]

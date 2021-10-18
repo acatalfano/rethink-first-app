@@ -12,6 +12,7 @@ module.exports = {
             astTransformers: ['jest-preset-angular/InlineHtmlStripStylesTransformer.js']
         }
     },
+    moduleDirectories: ['node_modules', 'src'],
     // TODO: figure out why jest and NG 12 clash here
     // moduleFileExtensions: ['html', 'js', 'json', 'ts']
     modulePathIgnorePatterns: ['<rootDir>/node_modules/.*'],

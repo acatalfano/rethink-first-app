@@ -11,6 +11,9 @@ describe('PatientBulkCrudService', () => {
     });
 
     it('should be created', () => {
+        expect.hasAssertions();
         expect(service).toBeTruthy();
     });
+
+    it.todo('');
 });

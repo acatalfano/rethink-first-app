@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RT1.Model.Objects.Entities
 {
     public class Patient
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

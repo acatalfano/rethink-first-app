@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,7 @@ namespace RT1.Web.Controllers.v1
 
         // POST api/v1/Patients/batch
         [HttpPost("batch")]
-        public async Task<ActionResult<IEnumerable<PatientDto>>> CreateManyPatients([FromBody] IEnumerable<PatientDto> patients)
+        public async Task<ActionResult<IEnumerable<PatientDto>>> CreateManyPatients(IEnumerable<PatientDto> patients)
         {
             var result = await patientsService.CreateManyPatients(patients);
             return this.GetStatusCode(result);

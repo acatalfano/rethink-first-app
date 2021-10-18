@@ -13,15 +13,15 @@ module.exports = {
         'no-loss-of-precision': 'error',
         'no-magic-numbers': [
             'error',
-            { ignore: [0, 1], ignoreArrayIndexes: true, enforceConst: true, detectObjects: true }
+            { ignore: [-1, 0, 1], ignoreArrayIndexes: true, enforceConst: true, detectObjects: true }
         ],
         'no-shadow': ['error', { hoist: 'all', builtinGlobals: true }],
-        'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true }],
-        'no-unused-vars': ['error', { argsIgnorePattern: '^_', caughtErrors: 'all' }],
+        'no-unused-expressions': ['warn', { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true }],
+        'no-unused-vars': ['warn', { argsIgnorePattern: '^_', caughtErrors: 'all' }],
         'no-use-before-define': ['error', { variables: true }],
-        'no-useless-constructor': 'error',
+        'no-useless-constructor': 'warn',
         quotes: [
-            'error',
+            'warn',
             'single',
             {
                 avoidEscape: true,

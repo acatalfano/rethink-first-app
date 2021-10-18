@@ -45,7 +45,7 @@ describe('PatientGridViewComponent', () => {
                 firstName: 'first',
                 lastName: 'last',
                 birthday: new Date(2000, 0, 15),
-                genderId: 0
+                gender: { id: 0, label: 'M' }
             };
             const testPatientData: Patient[] = [{ ...testPatient }];
             component.patientData = testPatientData;
@@ -61,7 +61,7 @@ describe('PatientGridViewComponent', () => {
                 firstName: 'first',
                 lastName: 'last',
                 birthday: new Date(2000, 0, 15),
-                genderId: 0
+                gender: { id: 0, label: 'M' }
             };
             const testPatientData: Patient[] = [{ ...testPatient }];
             component.patientData = testPatientData;
@@ -71,7 +71,7 @@ describe('PatientGridViewComponent', () => {
                 firstName: 'new',
                 lastName: 'patient',
                 birthday: new Date(1998, 3, 18),
-                genderId: 1
+                gender: { id: 1, label: 'F' }
             };
 
             testPatientData.push(newPatient);

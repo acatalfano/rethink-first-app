@@ -138,6 +138,7 @@ module.exports = {
         'lines-between-class-members': 'off',
         '@typescript-eslint/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
         '@typescript-eslint/method-signature-style': 'error',
+        '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/no-implicit-any-catch': 'error',
         'no-invalid-this': 'off',
         '@typescript-eslint/no-invalid-this': ['error', { capIsConstructor: false }],
@@ -150,7 +151,7 @@ module.exports = {
         '@typescript-eslint/no-magic-numbers': [
             'error',
             {
-                ignore: [0, 1],
+                ignore: [-1, 0, 1],
                 ignoreArrayIndexes: true,
                 enforceConst: true,
                 detectObjects: true,
@@ -193,7 +194,7 @@ module.exports = {
             { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true }
         ],
         'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', caughtErrors: 'all' }],
+        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', caughtErrors: 'all' }],
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': [
             'error',
@@ -223,7 +224,6 @@ module.exports = {
         '@typescript-eslint/prefer-nullish-coalescing': 'error',
         '@typescript-eslint/prefer-optional-chain': 'error',
         '@typescript-eslint/prefer-readonly': 'error',
-        '@typescript-eslint/prefer-reduce-type-parameter': 'error',
         '@typescript-eslint/prefer-regexp-exec': 'error',
         '@typescript-eslint/prefer-string-starts-ends-with': 'error',
         '@typescript-eslint/require-array-sort-compare': ['error', { ignoreStringArrays: true }],

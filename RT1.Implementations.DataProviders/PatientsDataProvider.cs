@@ -54,7 +54,7 @@ namespace RT1.Implementations.DataProviders
 
         public async Task<IEnumerable<Patient>> CreateManyPatients(IEnumerable<Patient> patients)
         {
-            dbContext.Patients.AddRange(patients);
+            dbContext.Patients.AddRange(patients.ToList());
             await dbContext.SaveChangesAsync();
 
             var ids = patients.Select(patient => patient.Id).ToList();

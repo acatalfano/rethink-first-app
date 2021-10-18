@@ -10,6 +10,8 @@
             [patientData]="patientsData$ | async"
             [tableDataLoading]="patientsLoading$ | async"
             [multiselectMode]="multiSelect.checked"
+            (editPatient)="onEdit($event)"
+            (deletePatient)="onDelete($event)"
         >
         </rt1-patient-grid-view>
     </div>

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
 
-import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import type { Patient } from 'app/model';
 
@@ -21,8 +21,6 @@ export class PatientGridActionsComponent {
     public set multiSelectMode(value: boolean) {
         if (this.multiSelectModeValue !== value) {
             this.multiSelectModeValue = value;
-            //TODO: vvv drop all the checkboxStateValue stuff if not used...
-            // this.checkboxState = false;
         }
     }
 
@@ -33,7 +31,7 @@ export class PatientGridActionsComponent {
     @Input()
     public checkboxValue: Patient;
 
-    public readonly faPencilAlt = faPencilAlt;
+    public readonly faSave = faSave;
     public readonly faTimes = faTimes;
 
     private multiSelectModeValue: boolean = false;

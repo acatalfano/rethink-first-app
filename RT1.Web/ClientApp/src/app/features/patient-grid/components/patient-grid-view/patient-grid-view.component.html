@@ -1,8 +1,7 @@
-<ng-content></ng-content>
 <p-table
     #table
     class="max-h-inherit"
-    [styleClass]="'py-5 max-h-inherit'"
+    [styleClass]="'py-5 max-h-inherit p-datatable-striped'"
     [value]="patientData ?? []"
     [dataKey]="'id'"
     [scrollable]="true"
@@ -47,10 +46,6 @@
     <ng-template [pTemplate]="'body'" let-patient>
         <tr class="p-selectable-row row-height">
             <td class="text-center" pFrozenColumn>
-                <!-- TODO: maybe refactor this to be a service?
-                            so I'm not just passing the data along...?
-                            vvvvvvvvvvvvvv
-                -->
                 <rt1-patient-grid-actions
                     (edit)="onEdit(patient)"
                     (delete)="onDelete(patient)"
@@ -59,10 +54,46 @@
                 >
                 </rt1-patient-grid-actions>
             </td>
-            <td>{{ patient.firstName }}</td>
-            <td>{{ patient.lastName }}</td>
-            <td>{{ patient.birthday | date: 'shortDate' }}</td>
-            <td>{{ patient.gender?.label }}</td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template [pTemplate]="'input'">
+                        <input pInputText type="text" [(ngModel)]="patient.firstName" />
+                    </ng-template>
+                    <ng-template [pTemplate]="'output'">
+                        {{ patient.firstName }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template [pTemplate]="'input'">
+                        <input pInputText type="text" [(ngModel)]="patient.lastName" />
+                    </ng-template>
+                    <ng-template [pTemplate]="'output'">
+                        {{ patient.lastName }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template [pTemplate]="'input'">
+                        <input pInputText type="text" [(ngModel)]="patient.birthday" />
+                    </ng-template>
+                    <ng-template [pTemplate]="'output'">
+                        {{ patient.birthday | date: 'shortDate' }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template [pTemplate]="'input'">
+                        <input pInputText type="text" [(ngModel)]="patient.gender.label" />
+                    </ng-template>
+                    <ng-template [pTemplate]="'output'">
+                        {{ patient.gender.label }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
         </tr>
     </ng-template>
     <ng-template [pTemplate]="'emptymessage'">

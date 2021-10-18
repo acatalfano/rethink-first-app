@@ -77,6 +77,14 @@ namespace RT1.Web
                 opt.UseSqlServer(connectionStrings.Rt1Model);
             });
 
+            //services.AddMvc()
+            //    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+            //    .AddJsonOptions(options =>
+            //    {
+            //        options.JsonSerializerOptions.AllowTrailingCommas = true;
+            //        options.JsonSerializerOptions.MaxDepth = 15;
+            //    });
+
             // Business Services
             services.AddScoped<IPatientsService, PatientsService>();
 

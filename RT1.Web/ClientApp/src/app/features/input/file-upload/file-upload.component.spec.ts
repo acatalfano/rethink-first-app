@@ -19,6 +19,7 @@ describe('FileUploadComponent', () => {
     });
 
     it('should create', () => {
+        expect.hasAssertions();
         expect(component).toBeTruthy();
     });
 });

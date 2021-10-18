@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "rbbit.typescript-hero",
+        "pkief.material-icon-theme",
+        "dbaeumer.vscode-eslint",
+        "angular.ng-template"
+    ]
+}

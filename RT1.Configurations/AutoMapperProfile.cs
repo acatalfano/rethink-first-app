@@ -9,7 +9,7 @@ namespace RT1.Configurations
         public AutoMapperProfile()
         {
             CreateMap<Patient, PatientDto>().ReverseMap();
-            CreateMap<Gender, GenderDto>();
+            CreateMap<Gender, GenderDto>().ReverseMap();
         }
     }
 }

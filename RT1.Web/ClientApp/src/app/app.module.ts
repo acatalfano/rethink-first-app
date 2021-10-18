@@ -6,6 +6,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 import { RootStoreModule } from './store/root-store.module';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { RootStoreModule } from './store/root-store.module';
         BrowserModule,
         BrowserAnimationsModule,
         RootStoreModule,
-        StoreDevtoolsModule.instrument()
+        StoreDevtoolsModule.instrument(),
+        CoreModule
     ],
     bootstrap: [AppComponent]
 })

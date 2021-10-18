@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { isNil as _isNil } from 'lodash-es';
+import { cloneDeep as _cloneDeep, isNil as _isNil } from 'lodash-es';
 
 import { PatientBulkCrudService } from '../../services';
 
@@ -25,12 +25,12 @@ import type { RecursiveKeyOf } from 'app/utilities/types';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PatientGridViewComponent implements DoCheck {
-    @Output() public readonly deletePatient: EventEmitter<Patient> = new EventEmitter<Patient>();
+    @Output() public readonly deletePatient: EventEmitter<number> = new EventEmitter<number>();
     @Output() public readonly editPatient: EventEmitter<Patient> = new EventEmitter<Patient>();
 
     @Input()
     public set patientData(value: Patient[] | null) {
-        this.patientDataValue = value;
+        this.patientDataValue = _cloneDeep(value);
         this.differ = this.iterDiffers.find(this.patientDataValue).create(this.iterTrackBy);
     }
 
@@ -86,8 +86,8 @@ export class PatientGridViewComponent implements DoCheck {
         this.editPatient.emit(patient);
     }
 
-    public onDelete(patient: Patient): void {
-        this.deletePatient.emit(patient);
+    public onDelete({ id }: Patient): void {
+        this.deletePatient.emit(id);
     }
 
     public onSelectionChange(selection: Patient[]): void {

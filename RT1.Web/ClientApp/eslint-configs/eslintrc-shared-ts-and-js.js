@@ -67,7 +67,6 @@ module.exports = {
         'no-continue': 'error',
         'no-debugger': 'error',
         'no-div-regex': 'error',
-        'no-else-return': 'error',
         'no-empty': 'off',
         'no-eq-null': 'error',
         'no-eval': 'error',

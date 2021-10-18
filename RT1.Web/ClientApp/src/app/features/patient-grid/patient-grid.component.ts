@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
+import { map } from 'rxjs/operators';
+
 import { select, Store } from '@ngrx/store';
-import { isEmpty as _isEmpty, isNil as _isNil, negate as _negate } from 'lodash-es';
+import { isEmpty as _isEmpty, isNil as _isNil } from 'lodash-es';
 import { Observable } from 'rxjs';
 
 import { patientsActions, PatientSelectors } from 'app/store';
@@ -10,7 +12,6 @@ import { RootState } from 'app/store/root.state';
 import { PatientBulkCrudService } from './services';
 
 import type { Patient } from 'app/model';
-import { map } from 'rxjs/operators';
 
 /**
  * N.B: to finish making this fully reusable, patient-grid-view.component
@@ -43,17 +44,25 @@ export class PatientGridComponent {
     }
 
     public get patientsAreMarkedForDeletion$(): Observable<boolean> {
-        return this.bulkCrudService.patientsToDelete$.pipe(map(_negate(_isEmpty)));
+        return this.bulkCrudService.patientsToDelete$.pipe(map(_isEmpty));
     }
 
     public get patientsAreMarkedForUpdate$(): Observable<boolean> {
-        return this.bulkCrudService.patientsToUpdate$.pipe(map(_negate(_isEmpty)));
+        return this.bulkCrudService.patientsToUpdate$.pipe(map(_isEmpty));
     }
 
     private patientsDataValue$: Observable<Patient[]>;
     private patientsLoadingValue$: Observable<boolean>;
 
     constructor(private readonly store$: Store<RootState>, private readonly bulkCrudService: PatientBulkCrudService) {}
+
+    public onEdit(patient: Patient): void {
+        this.store$.dispatch(patientsActions.updateOneRequestAction({ id: patient.id, patient }));
+    }
+
+    public onDelete(id: number): void {
+        this.store$.dispatch(patientsActions.deleteRequestAction({ id }));
+    }
 
     private acquirePatientsData$(): Observable<Patient[]> {
         this.store$.dispatch(patientsActions.loadAllRequestAction());

@@ -60,6 +60,7 @@
         "@babel/eslint-parser": "^7.15.8",
         "@babel/preset-typescript": "^7.15.0",
         "@ngrx/store-devtools": "^12.4.0",
+        "@nrwl/jest": "^12.10.0",
         "@types/jest": "^27.0.2",
         "@types/lodash-es": "^4.17.5",
         "@types/node": "^12.11.1",

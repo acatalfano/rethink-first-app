@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent should match snapshot 1`] = `
+<div
+  id="root2"
+>
+  <div
+    class="header d-flex"
+  >
+    <img
+      alt="RethinkFirst Logo"
+      class="p-3"
+      src="/assets/images/rethink-first-logo.png"
+    />
+    <h1
+      class="m-auto"
+    >
+      Patient Admin
+    </h1>
+    <div
+      class="offset"
+    />
+  </div>
+  <div
+    class="main"
+  >
+    <router-outlet />
+  </div>
+</div>
+`;

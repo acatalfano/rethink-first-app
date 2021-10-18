@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgModel } from '@angular/forms';
 
 import { MockComponents, MockDirectives } from 'ng-mocks';
 import { PrimeTemplate } from 'primeng/api';
-import { SortableColumn, Table, TableHeaderCheckbox } from 'primeng/table';
+import { InputText } from 'primeng/inputtext';
+import { CellEditor, EditableColumn, SortableColumn, SortIcon, Table, TableHeaderCheckbox } from 'primeng/table';
 
+import { PatientBulkCrudService } from '../../services';
 import { PatientGridActionsComponent } from '../patient-grid-actions/patient-grid-actions.component';
 
 import { PatientGridViewComponent } from './patient-grid-view.component';
@@ -11,16 +14,25 @@ import { PatientGridViewComponent } from './patient-grid-view.component';
 import type { Patient } from 'app/model';
 
 describe('PatientGridViewComponent', () => {
+    let replaceDeleteTargets: jest.Mock<void, [Patient[]]>;
+    let bulkCrudServiceMock: Partial<PatientBulkCrudService>;
+
     let component: PatientGridViewComponent;
     let fixture: ComponentFixture<PatientGridViewComponent>;
+
+    beforeEach(() => {
+        replaceDeleteTargets = jest.fn();
+        bulkCrudServiceMock = { replaceDeleteTargets };
+    });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [
                 PatientGridViewComponent,
-                MockComponents(Table, TableHeaderCheckbox, PatientGridActionsComponent),
-                MockDirectives(PrimeTemplate, SortableColumn)
-            ]
+                MockComponents(CellEditor, Table, TableHeaderCheckbox, PatientGridActionsComponent, SortIcon),
+                MockDirectives(EditableColumn, InputText, NgModel, PrimeTemplate, SortableColumn)
+            ],
+            providers: [{ provide: PatientBulkCrudService, useValue: bulkCrudServiceMock }]
         })
             .compileComponents()
             .then(() => {
@@ -29,8 +41,6 @@ describe('PatientGridViewComponent', () => {
                 fixture.detectChanges();
             });
     });
-
-    beforeEach(() => {});
 
     it('should create', () => {
         expect.hasAssertions();
@@ -52,34 +62,6 @@ describe('PatientGridViewComponent', () => {
             const actualPatientData = component.patientData;
             expect(actualPatientData).toHaveLength(1);
             expect(actualPatientData[0]).toEqual(expect.objectContaining(testPatient));
-        });
-
-        it('should handle external modifications', () => {
-            expect.hasAssertions();
-            const testPatient: Patient = {
-                id: 3,
-                firstName: 'first',
-                lastName: 'last',
-                birthday: new Date(2000, 0, 15),
-                gender: { id: 0, label: 'M' }
-            };
-            const testPatientData: Patient[] = [{ ...testPatient }];
-            component.patientData = testPatientData;
-
-            const newPatient: Patient = {
-                id: 5,
-                firstName: 'new',
-                lastName: 'patient',
-                birthday: new Date(1998, 3, 18),
-                gender: { id: 1, label: 'F' }
-            };
-
-            testPatientData.push(newPatient);
-
-            const actualPatientData = component.patientData;
-            expect(actualPatientData).toHaveLength(2);
-            expect(actualPatientData[0]).toEqual(expect.objectContaining(testPatient));
-            expect(actualPatientData[1]).toEqual(expect.objectContaining(newPatient));
         });
     });
 });

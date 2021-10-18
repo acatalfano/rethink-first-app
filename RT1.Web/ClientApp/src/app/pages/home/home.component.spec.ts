@@ -28,7 +28,3 @@ describe('HomeComponent', () => {
         expect(component).toBeTruthy();
     });
 });
-/*
-[{"id":-1,"firstName":"Clark","lastName":"Kent","birthday":"Mon Oct 18 2021 01:27:21 GMT-0400 (Eastern Daylight Time)","gender":{"id":2,"label":"M"}},{"id":-1,"firstName":"Diana","lastName":"Prince","birthday":"Mon Oct 18 2021 01:27:21 GMT-0400 (Eastern Daylight Time)","gender":{"id":1,"label":"F"}},{"id":-1,"firstName":"Tony","lastName":"Stark","birthday":"Mon Oct 18 2021 01:27:21 GMT-0400 (Eastern Daylight Time)","gender":{"id":2,"label":"M"}},{"id":-1,"firstName":"Carol","lastName":"Denvers","birthday":"Mon Oct 18 2021 01:27:21 GMT-0400 (Eastern Daylight Time)","gender":{"id":1,"label":"F"}}]
-
-*/

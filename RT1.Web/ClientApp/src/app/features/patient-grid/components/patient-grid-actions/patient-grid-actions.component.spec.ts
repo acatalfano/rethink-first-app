@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { MockComponents } from 'ng-mocks';
+import { TableCheckbox } from 'primeng/table';
+
 import { PatientGridActionsComponent } from './patient-grid-actions.component';
 
 describe('PatientGridActionsComponent', () => {
@@ -8,7 +12,7 @@ describe('PatientGridActionsComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [PatientGridActionsComponent]
+            declarations: [PatientGridActionsComponent, MockComponents(TableCheckbox, FaIconComponent)]
         }).compileComponents();
     });
 
@@ -19,6 +23,7 @@ describe('PatientGridActionsComponent', () => {
     });
 
     it('should create', () => {
+        expect.hasAssertions();
         expect(component).toBeTruthy();
     });
 });

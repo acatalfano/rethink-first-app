@@ -6,7 +6,9 @@ describe('PatientBulkCrudService', () => {
     let service: PatientBulkCrudService;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
+        TestBed.configureTestingModule({
+            providers: [PatientBulkCrudService]
+        });
         service = TestBed.inject(PatientBulkCrudService);
     });
 
@@ -15,5 +17,5 @@ describe('PatientBulkCrudService', () => {
         expect(service).toBeTruthy();
     });
 
-    it.todo('');
+    it.todo('x');
 });

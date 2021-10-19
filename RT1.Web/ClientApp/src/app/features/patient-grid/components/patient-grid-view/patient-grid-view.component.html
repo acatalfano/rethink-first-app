@@ -75,9 +75,10 @@
                 </p-cellEditor>
             </td>
             <td pEditableColumn>
+                <!-- TODO: buggy! -->
                 <p-cellEditor>
                     <ng-template [pTemplate]="'input'">
-                        <input pInputText type="text" [(ngModel)]="patient.birthday" />
+                        <p-calendar [(ngModel)]="patient.birthday"></p-calendar>
                     </ng-template>
                     <ng-template [pTemplate]="'output'">
                         {{ patient.birthday | date: 'shortDate' }}
@@ -85,14 +86,11 @@
                 </p-cellEditor>
             </td>
             <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template [pTemplate]="'input'">
-                        <input pInputText type="text" [(ngModel)]="patient.gender.label" />
-                    </ng-template>
-                    <ng-template [pTemplate]="'output'">
-                        {{ patient.gender.label }}
-                    </ng-template>
-                </p-cellEditor>
+                <p-dropdown
+                    class="w-100"
+                    [options]="(genders$ | async) ?? []"
+                    [(ngModel)]="patient.gender"
+                ></p-dropdown>
             </td>
         </tr>
     </ng-template>

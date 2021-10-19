@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgModel } from '@angular/forms';
 
+import { provideMockStore } from '@ngrx/store/testing';
 import { MockComponents, MockDirectives } from 'ng-mocks';
 import { PrimeTemplate } from 'primeng/api';
 import { InputText } from 'primeng/inputtext';
@@ -32,7 +33,10 @@ describe('PatientGridViewComponent', () => {
                 MockComponents(CellEditor, Table, TableHeaderCheckbox, PatientGridActionsComponent, SortIcon),
                 MockDirectives(EditableColumn, InputText, NgModel, PrimeTemplate, SortableColumn)
             ],
-            providers: [{ provide: PatientBulkCrudService, useValue: bulkCrudServiceMock }]
+            providers: [
+                { provide: PatientBulkCrudService, useValue: bulkCrudServiceMock },
+                provideMockStore({ initialState: {} })
+            ]
         })
             .compileComponents()
             .then(() => {

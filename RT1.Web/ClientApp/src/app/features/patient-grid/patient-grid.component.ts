@@ -6,7 +6,7 @@ import { select, Store } from '@ngrx/store';
 import { isEmpty as _isEmpty, isNil as _isNil } from 'lodash-es';
 import { Observable } from 'rxjs';
 
-import { patientsActions, PatientSelectors } from 'app/store';
+import { patientsActions, PatientsSelectors } from 'app/store';
 import { RootState } from 'app/store/root.state';
 
 import { PatientBulkCrudService } from './services';
@@ -38,7 +38,7 @@ export class PatientGridComponent {
 
     public get patientsLoading$(): Observable<boolean> {
         if (_isNil(this.patientsLoadingValue$)) {
-            this.patientsLoadingValue$ = this.store$.pipe(select(PatientSelectors.isLoading));
+            this.patientsLoadingValue$ = this.store$.pipe(select(PatientsSelectors.isLoading));
         }
         return this.patientsLoadingValue$;
     }
@@ -66,6 +66,6 @@ export class PatientGridComponent {
 
     private acquirePatientsData$(): Observable<Patient[]> {
         this.store$.dispatch(patientsActions.loadAllRequestAction());
-        return this.store$.pipe(select(PatientSelectors.selectAll));
+        return this.store$.pipe(select(PatientsSelectors.selectAll));
     }
 }

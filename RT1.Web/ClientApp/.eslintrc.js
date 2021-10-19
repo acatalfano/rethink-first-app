@@ -8,15 +8,15 @@ module.exports = {
     plugins: ['eslint-comments', 'import', 'prefer-arrow', 'prettier'],
     overrides: [
         {
-            files: ['*.js'],
+            files: ['**/*.js'],
             extends: ['./eslint-configs/eslintrc-js']
         },
         {
-            files: ['*.component.html'],
+            files: ['**/*.component.html'],
             extends: ['plugin:@angular-eslint/template/recommended']
         },
         {
-            files: ['*.component.html'],
+            files: ['**/*.component.html'],
             excludedFiles: ['*inline-template-*.component.html'],
             extends: ['plugin:prettier/recommended'],
             rules: {
@@ -24,7 +24,7 @@ module.exports = {
             }
         },
         {
-            files: ['setup-jest.ts'],
+            files: ['**/setup-jest.ts'],
             parser: '@typescript-eslint/parser',
             parserOptions: {
                 tsconfigRootDir: __dirname,
@@ -32,8 +32,8 @@ module.exports = {
             }
         },
         {
-            files: ['*.ts'],
-            excludedFiles: ['*.spec.ts', '*-spec.ts', 'setup-jest.ts'],
+            files: ['**/*.ts'],
+            excludedFiles: ['**/*.spec.ts', '**/*-spec.ts', '**/setup-jest.ts'],
             extends: ['./eslint-configs/eslintrc-ts'],
             parserOptions: {
                 tsconfigRootDir: __dirname,
@@ -52,7 +52,7 @@ module.exports = {
             }
         },
         {
-            files: ['*.spec.ts', '*-spec.ts'],
+            files: ['**/*.spec.ts', '**/*-spec.ts'],
             excludedFiles: ['**/e2e/**/*.spec.ts', '**/e2e/**/*-spec.ts'],
             extends: ['./eslint-configs/eslintrc-spec-ts'],
             rules: {
@@ -80,6 +80,12 @@ module.exports = {
             files: ['**/*.ts'],
             rules: {
                 'prettier/prettier': 'warn'
+            }
+        },
+        {
+            files: ['**/*-store/*.ts'],
+            rules: {
+                '@typescript-eslint/explicit-module-boundary-types': 'off'
             }
         }
     ]

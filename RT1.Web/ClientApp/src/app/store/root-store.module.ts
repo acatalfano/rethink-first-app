@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ErrorStoreModule } from './error-store/error-store.module';
-import { GenderStoreModule } from './gender-store';
+import { GendersStoreModule } from './genders-store';
 import { BusyService } from './network-common/busy.service';
 import { PatientsStoreModule } from './patients-store/patients-store.module';
 
@@ -27,7 +27,7 @@ import { PatientsStoreModule } from './patients-store/patients-store.module';
         ),
         StoreDevtoolsModule.instrument(),
         ErrorStoreModule,
-        GenderStoreModule,
+        GendersStoreModule,
         PatientsStoreModule
     ],
     providers: [BusyService]

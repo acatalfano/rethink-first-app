@@ -100,15 +100,8 @@ namespace RT1.Web
 
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
-            /////////////////////////////////////////////////////////////
-            //////// Business Services //////////////////////////////////
-            /////////////////////////////////////////////////////////////
-            services.AddScoped<IPatientsService, PatientsService>();
-
-            /////////////////////////////////////////////////////////////
-            //////// Data Providers /////////////////////////////////////
-            /////////////////////////////////////////////////////////////
-            services.AddScoped<IPatientsDataProvider, PatientsDataProvider>();
+            configureBusinessServices(services);
+            configureDataProviders(services);
 
             if (HostEnvironment.IsDevelopment())
             {
@@ -182,6 +175,18 @@ namespace RT1.Web
                     //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });
+        }
+
+        private void configureBusinessServices(IServiceCollection services)
+        {
+            services.AddScoped<IPatientsService, PatientsService>();
+            services.AddScoped<IGendersService, GendersService>();
+        }
+
+        private void configureDataProviders(IServiceCollection services)
+        {
+            services.AddScoped<IPatientsDataProvider, PatientsDataProvider>();
+            services.AddScoped<IGendersDataProvider, GendersDataProvider>();
         }
 
         static string XmlCommentsFilePath

@@ -1,7 +1,7 @@
 <div class="max-h-inherit d-flex flex-column w-75 m-auto">
-    <div class="d-flex justify-content-between multiselect-header mt-5">
+    <div class="d-flex align-items-center multiselect-header mt-5">
         <ng-content></ng-content>
-        <mat-slide-toggle #multiSelect class="ms-auto"></mat-slide-toggle>
+        <mat-slide-toggle #multiSelect class="ps-3" [color]="'primary'">Multi-Select Mode</mat-slide-toggle>
     </div>
 
     <div class="grid-display">

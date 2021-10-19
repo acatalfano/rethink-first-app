@@ -1,21 +1,20 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    EventEmitter,
-    Input,
-    IterableDiffers,
-    Output
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+
+import { filter, map, take, takeUntil } from 'rxjs/operators';
 
 import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { cloneDeep as _cloneDeep, isNil as _isNil } from 'lodash-es';
+import { select, Store } from '@ngrx/store';
+import { cloneDeep as _cloneDeep, isNil as _isNil, negate as _negate } from 'lodash-es';
+import { AsyncSubject, Observable } from 'rxjs';
+
+import { Gender, Patient } from 'app/model';
+import { gendersActions, GendersSelectors } from 'app/store/genders-store';
+import { isDefined } from 'app/utilities/assertions';
 
 import { PatientBulkCrudService } from '../../services';
 
 import type { ColumnDescriptor } from './model/column-descriptor.interface';
-import type { TrackByFunction, IterableDiffer, DoCheck } from '@angular/core';
-import type { Patient } from 'app/model';
+import type { RootState } from 'app/store/root.state';
 import type { RecursiveKeyOf } from 'app/utilities/types';
 
 @Component({
@@ -24,14 +23,13 @@ import type { RecursiveKeyOf } from 'app/utilities/types';
     styleUrls: ['./patient-grid-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PatientGridViewComponent implements DoCheck {
+export class PatientGridViewComponent implements OnInit, OnDestroy {
     @Output() public readonly deletePatient: EventEmitter<number> = new EventEmitter<number>();
     @Output() public readonly editPatient: EventEmitter<Patient> = new EventEmitter<Patient>();
 
     @Input()
     public set patientData(value: Patient[] | null) {
         this.patientDataValue = _cloneDeep(value);
-        this.differ = this.iterDiffers.find(this.patientDataValue).create(this.iterTrackBy);
     }
 
     public get patientData(): Patient[] | null {
@@ -50,6 +48,14 @@ export class PatientGridViewComponent implements DoCheck {
     @Input()
     public tableDataLoading: boolean | null = false;
 
+    public get genders$(): Observable<Gender[]> {
+        if (_isNil(this.gendersValue$)) {
+            this.gendersValue$ = this.store$.pipe(select(GendersSelectors.selectAll), map(_cloneDeep));
+            this.store$.dispatch(gendersActions.loadAllRequestAction());
+        }
+        return this.gendersValue$;
+    }
+
     public readonly dataColumnDescriptors: ColumnDescriptor[] = [
         { field: 'firstName', label: 'First Name' },
         { field: 'lastName', label: 'Last Name' },
@@ -66,20 +72,19 @@ export class PatientGridViewComponent implements DoCheck {
     public readonly faTimes = faTimes;
     public readonly filterableFields: RecursiveKeyOf<Patient>[] = ['firstName', 'lastName'];
     private multiselectModeValue: boolean = false;
-    private differ?: IterableDiffer<Patient>;
     private patientDataValue: Patient[] | null = [];
+    private gendersValue$: Observable<Gender[]>;
+    private readonly unsubscribe$: AsyncSubject<void> = new AsyncSubject<void>();
 
-    constructor(
-        private readonly cd: ChangeDetectorRef,
-        private readonly iterDiffers: IterableDiffers,
-        private readonly bulkCrudService: PatientBulkCrudService
-    ) {}
+    constructor(private readonly bulkCrudService: PatientBulkCrudService, private readonly store$: Store<RootState>) {}
 
-    public ngDoCheck(): void {
-        const diffs = this.differ?.diff(this.patientDataValue);
-        if (!_isNil(diffs)) {
-            this.cd.detectChanges();
-        }
+    public ngOnInit(): void {
+        this.store$.dispatch(gendersActions.loadAllRequestAction());
+    }
+
+    public ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 
     public onEdit(patient: Patient): void {
@@ -94,5 +99,9 @@ export class PatientGridViewComponent implements DoCheck {
         this.bulkCrudService.replaceDeleteTargets(selection);
     }
 
-    private readonly iterTrackBy: TrackByFunction<Patient> = (_index, patient) => patient.id;
+    public updateGender(patient: Patient, gender: Gender): void {
+        patient.gender = gender;
+    }
+
+    // TODO: buggy behavior with PrimeNG's calendar component when inside a cellEditor
 }

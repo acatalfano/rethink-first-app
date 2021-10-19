@@ -8,7 +8,7 @@ import { AsyncSubject, from } from 'rxjs';
 
 import { Gender, NoIdPatient } from 'app/model';
 import { patientsActions } from 'app/store';
-import { GenderSelectors } from 'app/store/gender-store';
+import { GendersSelectors } from 'app/store/genders-store';
 import { RootState } from 'app/store/root.state';
 
 interface HeaderCell {
@@ -46,7 +46,7 @@ export class FileUploadComponent implements OnDestroy {
             .pipe(
                 switchMap(text =>
                     this.store$.pipe(
-                        select(GenderSelectors.selectAll),
+                        select(GendersSelectors.selectAll),
                         map(genders => this.buildGenderLabelObjectMap(genders)),
                         map(gendersMap => ({ text, gendersMap }))
                     )

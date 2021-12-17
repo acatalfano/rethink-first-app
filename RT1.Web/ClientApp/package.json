@@ -62,6 +62,7 @@
     "@babel/preset-typescript": "^7.15.0",
     "@ngrx/store-devtools": "^13.0.2",
     "@nrwl/jest": "^13.3.9",
+    "@ngneat/spectator": "^9.0.0",
     "@popperjs/core": "^2.11.0",
     "@types/jest": "^27.0.2",
     "@types/lodash-es": "^4.17.5",

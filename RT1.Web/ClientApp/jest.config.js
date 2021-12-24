@@ -2,7 +2,6 @@
 require('jest-preset-angular/ngcc-jest-processor');
 
 module.exports = {
-    // bail: 1,
     clearMocks: false,
     // TODO: better yet, have an override CLI in package.json scripts!
     // set to true for coverage, will slow down tests
@@ -47,25 +46,15 @@ module.exports = {
     //     }
     // },
     // /* eslint-enable no-magic-numbers */
-    // globals: {
-    //     'ts-jest': {
-    //         tsconfig: '<rootDir>/tsconfig.spec.json',//TODO: included
-    //         isolatedModules: true,//TODO: added
-    //         stringifyContentPathRegex: '\\.html$',//TODO: included ---> '\\.(html|svg)$'
-    //         astTransformers: ['jest-preset-angular/InlineHtmlStripStylesTransformer.js']//TODO: added
-    //         //TODO: excluded: useESM: true
-    //     }
-    // },
-    moduleDirectories: ['node_modules', 'src'],//TODO: added
-    modulePathIgnorePatterns: ['<rootDir>/node_modules/.*'],//TODO: added
+    moduleDirectories: ['node_modules', 'src'],
+    modulePathIgnorePatterns: ['<rootDir>/node_modules/.*'],
     preset: 'jest-preset-angular/presets/defaults-esm',
-    roots: ['src'],//TODO: added
-    setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],//TODO: added
-    snapshotSerializers: [//TODO: vvv added
+    roots: ['src'],
+    setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+    snapshotSerializers: [
         'jest-preset-angular/build/serializers/no-ng-attributes',
         'jest-preset-angular/build/serializers/ng-snapshot',
         'jest-preset-angular/build/serializers/html-comment'
     ],
-    testMatch: ['**/?(*.)+(spec).[tj]s?(x)'],//TODO: added
-    // testPathIgnorePatterns: ['<rootDir>/node_modules']//TODO: added
+    testMatch: ['**/?(*.)+(spec).[tj]s?(x)']
 };

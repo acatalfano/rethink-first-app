@@ -6,12 +6,12 @@ import { select, Store } from '@ngrx/store';
 import { isEmpty as _isEmpty, isNil as _isNil } from 'lodash-es';
 import { Observable } from 'rxjs';
 
-import { patientsActions, PatientsSelectors } from 'app/store';
-import { RootState } from 'app/store/root.state';
+import { patientsActions, PatientsSelectors } from 'src/app/store';
+import { RootState } from 'src/app/store/root.state';
 
 import { PatientBulkCrudService } from './services';
 
-import type { Patient } from 'app/model';
+import type { Patient } from 'src/app/model';
 
 /**
  * N.B: to finish making this fully reusable, patient-grid-view.component

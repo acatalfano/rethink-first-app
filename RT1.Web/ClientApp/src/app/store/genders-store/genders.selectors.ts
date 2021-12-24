@@ -5,7 +5,7 @@ import { gendersAdapter } from './genders.state';
 
 import type { RootState } from '../root.state';
 import type { MemoizedSelector } from '@ngrx/store';
-import type { Gender } from 'app/model';
+import type { Gender } from 'src/app/model';
 
 export const gendersState = createFeatureSelector<EntityState<Gender>>('gender');
 

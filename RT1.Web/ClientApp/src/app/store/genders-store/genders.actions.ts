@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Gender } from 'app/model';
+import { Gender } from 'src/app/model';
 
 export const gendersActionText = '[GendersAction]';
 export const gendersActions = {

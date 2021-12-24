@@ -9,7 +9,7 @@ exports[`AppComponent should match snapshot 1`] = `
   >
     <img
       alt="RethinkFirst Logo"
-      class="p-3"
+      class="p-3 d-sm-none"
       src="/assets/images/rethink-first-logo.png"
     />
     <h1
@@ -25,6 +25,7 @@ exports[`AppComponent should match snapshot 1`] = `
     class="main"
   >
     <router-outlet />
+    
   </div>
 </div>
 `;

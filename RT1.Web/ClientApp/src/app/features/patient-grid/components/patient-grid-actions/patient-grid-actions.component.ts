@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input } from 
 
 import { faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import type { Patient } from 'app/model';
+import type { Patient } from 'src/app/model';
 
 @Component({
     selector: 'rt1-patient-grid-actions',
@@ -29,7 +29,7 @@ export class PatientGridActionsComponent {
     }
 
     @Input()
-    public checkboxValue: Patient;
+    public checkboxValue: Patient | undefined;
 
     public readonly faSave = faSave;
     public readonly faTimes = faTimes;

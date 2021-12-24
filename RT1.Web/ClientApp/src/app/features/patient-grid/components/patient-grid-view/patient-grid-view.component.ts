@@ -1,21 +1,20 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
-import { filter, map, take, takeUntil } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { select, Store } from '@ngrx/store';
-import { cloneDeep as _cloneDeep, isNil as _isNil, negate as _negate } from 'lodash-es';
+import { cloneDeep as _cloneDeep, isNil as _isNil } from 'lodash-es';
 import { AsyncSubject, Observable } from 'rxjs';
 
-import { Gender, Patient } from 'app/model';
-import { gendersActions, GendersSelectors } from 'app/store/genders-store';
-import { isDefined } from 'app/utilities/assertions';
+import { Gender, Patient } from 'src/app/model';
+import { gendersActions, GendersSelectors } from 'src/app/store/genders-store';
 
 import { PatientBulkCrudService } from '../../services';
 
 import type { ColumnDescriptor } from './model/column-descriptor.interface';
-import type { RootState } from 'app/store/root.state';
-import type { RecursiveKeyOf } from 'app/utilities/types';
+import type { RootState } from 'src/app/store/root.state';
+import type { RecursiveKeyOf } from 'src/app/utilities/types';
 
 @Component({
     selector: 'rt1-patient-grid-view',
@@ -73,7 +72,7 @@ export class PatientGridViewComponent implements OnInit, OnDestroy {
     public readonly filterableFields: RecursiveKeyOf<Patient>[] = ['firstName', 'lastName'];
     private multiselectModeValue: boolean = false;
     private patientDataValue: Patient[] | null = [];
-    private gendersValue$: Observable<Gender[]>;
+    private gendersValue$!: Observable<Gender[]>;
     private readonly unsubscribe$: AsyncSubject<void> = new AsyncSubject<void>();
 
     constructor(private readonly bulkCrudService: PatientBulkCrudService, private readonly store$: Store<RootState>) {}

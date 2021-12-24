@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 export type RecursiveKeyOf<TObj extends object> = {
     [TKey in keyof TObj & (string | number)]: RecursiveKeyOfHandleValue<TObj[TKey], `${TKey}`>;
 }[keyof TObj & (string | number)];
@@ -12,4 +11,3 @@ type RecursiveKeyOfHandleValue<TValue, TText extends string> = TValue extends ob
     : TText;
 
 type RecursiveKeyOfAccess<TKey extends string | number> = `['${TKey}']` | `.${TKey}`;
-/* eslint-enable @typescript-eslint/ban-types */

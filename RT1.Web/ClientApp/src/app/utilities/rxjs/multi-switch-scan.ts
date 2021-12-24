@@ -24,7 +24,6 @@ export const multiSwitchScan = <R, P extends PairList<R>>(...srcAccumList: P): M
         { index: accumIndexer, value }: { index: number; value: U },
         index: number
     ): R => {
-        /* eslint-disable-next-line @typescript-eslint/no-magic-numbers*/
         return accumIndexer === -1 ? accum : accumMap[accumIndexer](accum, value, index);
     };
 
@@ -32,7 +31,6 @@ export const multiSwitchScan = <R, P extends PairList<R>>(...srcAccumList: P): M
         source.pipe(
             switchMap((src: R) =>
                 merge(...sources).pipe(
-                    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                     startWith<{ value: unknown; index: number }>({ value: null, index: -1 }),
                     scan(accumulator, src),
                     shareReplay({ bufferSize: 1, refCount: true })

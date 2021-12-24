@@ -3,9 +3,9 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { isNil as _isNil } from 'lodash-es';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 
-import { multiSwitchScan } from 'app/utilities/rxjs';
+import { multiSwitchScan } from 'src/app/utilities/rxjs';
 
-import type { Patient } from 'app/model';
+import type { Patient } from 'src/app/model';
 
 @Injectable()
 export class PatientBulkCrudService implements OnDestroy {
@@ -20,7 +20,7 @@ export class PatientBulkCrudService implements OnDestroy {
         return this.patientsToUpdateValue$;
     }
 
-    private patientsToUpdateValue$: Observable<Patient[]>;
+    private patientsToUpdateValue$!: Observable<Patient[]>;
     private readonly patientsToDeleteSrc$: BehaviorSubject<Patient[]> = new BehaviorSubject<Patient[]>([]);
     private readonly clearUpdates$: Subject<void> = new Subject<void>();
     private readonly targetUpdate$: Subject<Patient> = new Subject<Patient>();

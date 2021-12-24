@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MockComponents } from 'ng-mocks';
 
-import { FileUploadComponent } from 'app/features/input/file-upload/file-upload.component';
-import { PatientGridComponent } from 'app/features/patient-grid/patient-grid.component';
+import { FileUploadComponent } from 'src/app/features/input/file-upload/file-upload.component';
+import { PatientGridComponent } from 'src/app/features/patient-grid/patient-grid.component';
 
 import { HomeComponent } from './home.component';
 

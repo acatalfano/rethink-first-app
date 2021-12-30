@@ -8,22 +8,22 @@ module.exports = {
     collectCoverage: false,
     coverageDirectory: 'coverage',
     coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
-    // globals: {
-    //     'ts-jest': {
-    //         tsconfig: '<rootDir>/tsconfig.spec.json',
-    //         isolatedModules: true,
-    //         stringifyContentPathRegex: '\\.html$',
-    //         astTransformers: ['jest-preset-angular/InlineHtmlStripStylesTransformer.js']
-    //     }
-    // },
+    globals: {
+        'ts-jest': {
+            tsconfig: '<rootDir>/tsconfig.spec.json',
+            isolatedModules: true,
+            stringifyContentPathRegex: '\\.html$',
+            astTransformers: ['jest-preset-angular/InlineHtmlStripStylesTransformer.js']
+        }
+    },
     moduleDirectories: ['node_modules', 'src'],
-    // moduleFileExtensions: [
-    //     // 'html',
-    //     'js',
-    //     'json',
-    //     'ts',
-    //     'mjs'
-    // ],
+    moduleFileExtensions: [
+        // 'html',
+        'js',
+        'json',
+        'ts',
+        'mjs'
+    ],
     modulePathIgnorePatterns: ['<rootDir>/node_modules/.*'],
     preset: 'jest-preset-angular',
     roots: ['src'],

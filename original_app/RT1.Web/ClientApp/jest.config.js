@@ -1,3 +1,7 @@
+// TODO: fantastic... looks like eslint dies on js files with the @babel/eslint-parser
+//      ...but only in vscode...??? CLI works fine? great job microsoft!
+require('jest-preset-angular/ngcc-jest-processor');
+
 module.exports = {
     bail: 1,
     clearMocks: false,

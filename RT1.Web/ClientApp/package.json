@@ -59,6 +59,8 @@
     "@angular/language-service": "^13.1.1",
     "@babel/core": "^7.16.5",
     "@babel/eslint-parser": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-typescript": "^7.16.5",
     "@ngneat/spectator": "^9.0.0",
     "@ngrx/store-devtools": "^13.0.2",
     "@nrwl/jest": "^13.4.1",

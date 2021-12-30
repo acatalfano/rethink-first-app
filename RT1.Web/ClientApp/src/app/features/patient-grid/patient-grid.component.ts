@@ -44,15 +44,15 @@ export class PatientGridComponent {
     }
 
     public get patientsAreMarkedForDeletion$(): Observable<boolean> {
-        return this.bulkCrudService.patientsToDelete$.pipe(map(_isEmpty));
+        return this.bulkCrudService.patientsToDelete$.pipe(map<Patient[], boolean>(_isEmpty));
     }
 
     public get patientsAreMarkedForUpdate$(): Observable<boolean> {
-        return this.bulkCrudService.patientsToUpdate$.pipe(map(_isEmpty));
+        return this.bulkCrudService.patientsToUpdate$.pipe(map<Patient[], boolean>(_isEmpty));
     }
 
-    private patientsDataValue$: Observable<Patient[]>;
-    private patientsLoadingValue$: Observable<boolean>;
+    private patientsDataValue$!: Observable<Patient[]>;
+    private patientsLoadingValue$!: Observable<boolean>;
 
     constructor(private readonly store$: Store<RootState>, private readonly bulkCrudService: PatientBulkCrudService) {}
 

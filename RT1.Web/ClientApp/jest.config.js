@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unassigned-import
-require('jest-preset-angular/ngcc-jest-processor');
+import('jest-preset-angular/ngcc-jest-processor');
 
 module.exports = {
     clearMocks: false,

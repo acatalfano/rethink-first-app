@@ -17,8 +17,16 @@ module.exports = {
         }
     },
     moduleDirectories: ['node_modules', 'src'],
-    // TODO: figure out why jest and NG 12 clash here
-    // moduleFileExtensions: ['html', 'js', 'json', 'ts']
+    moduleFileExtensions: [
+        //'html',
+        // TODO: including 'html' causes issues (even in the test_app version!!)
+        //      (why??? it makes NO SENSE!)
+        'js',
+        'json',
+        'ts',
+        'mjs'
+        // TODO: double-check, I think jest-preset-angular takes care of moduleFileExtensions!
+    ],
     modulePathIgnorePatterns: ['<rootDir>/node_modules/.*'],
     preset: 'jest-preset-angular',
     roots: ['src'],
@@ -30,11 +38,11 @@ module.exports = {
     ],
     testEnvironment: 'jsdom',
     testMatch: ['**/?(*.)+(spec).[tj]s?(x)'],
-    testPathIgnorePatterns: ['<rootDir>/node_modules'],
+    // testPathIgnorePatterns: ['<rootDir>/node_modules'],
     transform: {
         // TODO: figure out why jest and NG 12 clash here
         // '().+\\.ts$': 'babel-jest',
-        '^.+\\.(ts|html)$': 'ts-jest'
-    },
-    transformIgnorePatterns: ['/node_modules/(?!)']
+        // '^.+\\.(ts|html)$': 'ts-jest'
+    } //,
+    // transformIgnorePatterns: ['/node_modules/(?!)']
 };

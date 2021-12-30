@@ -10,6 +10,7 @@ specifiers:
   '@angular/compiler-cli': ~13.1.0
   '@angular/core': ~13.1.0
   '@angular/forms': ~13.1.0
+  '@angular/language-service': ^13.1.1
   '@angular/platform-browser': ~13.1.0
   '@angular/platform-browser-dynamic': ~13.1.0
   '@angular/router': ~13.1.0
@@ -45,6 +46,7 @@ devDependencies:
   '@angular-devkit/build-angular': 13.1.2_eff5ffded5781db340c2e6e6fb85c3af
   '@angular/cli': 13.1.2
   '@angular/compiler-cli': 13.1.1_310e54acf9b4c114a93e283063ada2ad
+  '@angular/language-service': 13.1.1
   '@babel/core': 7.16.5
   '@types/jasmine': 3.10.2
   '@types/jest': 27.0.3
@@ -369,6 +371,11 @@ packages:
       rxjs: 7.4.0
       tslib: 2.3.1
     dev: false
+
+  /@angular/language-service/13.1.1:
+    resolution: {integrity: sha512-ilMwR7tv/nANTj5nkEY2/F2VtERi2BFJJEBlfzWrD9yt73pPhPg84o4GPeax07jydBwN0tYOK8jlioCm3MckQg==}
+    engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
+    dev: true
 
   /@angular/platform-browser-dynamic/13.1.1_53ae741ee19166964f64e7b56404e938:
     resolution: {integrity: sha512-ujHJMhJk93hjLx/SQ67y7xiGh2UDL+toVi3OlorWvnYGgPR26ufyL+J73BA+RAKHSP2WPiXU+/87vSz8r+BEgA==}

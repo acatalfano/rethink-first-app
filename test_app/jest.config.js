@@ -52,6 +52,8 @@ module.exports = {
     },
     // transformIgnorePatterns: ['/node_modules/(?!.*\\.mjs$)']
     // transformIgnorePatterns: ['/node_modules/(?!@ngrx)']
-    transformIgnorePatterns: ['/node_modules/(?!lodash-es)']
+    // transformIgnorePatterns: ['node_modules/(?!@angular|@ngx-translate)']
+    transformIgnorePatterns: ['node_modules/.*/(?!.*\.mjs)']
+    // transformIgnorePatterns: ['/node_modules/(?!lodash-es)']
     // include this ^^^^^ (or the ngrx one) and get "cannot use import statement outside a module"
 };

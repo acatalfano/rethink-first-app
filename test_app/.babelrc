@@ -1,5 +1,7 @@
 {
-    "plugins": ["transform-es2015-modules-commonjs"],
-    "presets": ["@babel/preset-typescript", "@babel/preset-env"]
-    // "presets": ["@babel/preset-env"]
+    "plugins": ["@babel/transform-modules-commonjs"],
+    "presets": [
+        "@babel/preset-typescript",
+        "@babel/preset-env"
+    ]
 }

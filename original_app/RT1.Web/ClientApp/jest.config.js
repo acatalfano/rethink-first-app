@@ -1,5 +1,3 @@
-// TODO: fantastic... looks like eslint dies on js files with the @babel/eslint-parser
-//      ...but only in vscode...??? CLI works fine? great job microsoft!
 require('jest-preset-angular/ngcc-jest-processor');
 
 module.exports = {
@@ -18,7 +16,7 @@ module.exports = {
     },
     moduleDirectories: ['node_modules', 'src'],
     moduleFileExtensions: [
-        //'html',
+        // 'html',
         // TODO: including 'html' causes issues (even in the test_app version!!)
         //      (why??? it makes NO SENSE!)
         'js',

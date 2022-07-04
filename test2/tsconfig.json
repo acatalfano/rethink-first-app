@@ -2,31 +2,195 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
+    // ---- type-checking ----
     "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    // #region
+    // "exactOptionalPropertyTypes": false,
+    // "noUncheckedIndexedAccess": false,
+
+    // **** included with "strict": true ****
+    // "alwaysStrict": true,
+    // "noImplicitAny": true,
+    // "noImplicitThis": true,
+    // "strictBindCallApply": true,
+    // "strictFunctionTypes": true,
+    // "strictNullChecks": true,
+    // "strictPropertyInitialization": true,
+    // "useUnknownInCatchVariables": true,
+    // #endregion
+
+
+    // ---- modules ----
+    "module": "es2020",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    // #region
+    // "allowUmdGlobalAccess": false,
+    // "noResolve": false,
+    // "paths": {},
+    // "rootDir": "",
+    // "rootDirs": [],
+    // "typeRoots": [],
+    // "types": [],
+    // #endregion
+
+    // ---- emit ----
     "sourceMap": true,
+    "noEmit": false,
+    "outDir": "./dist/out-tsc",
     "declaration": false,
     "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
-    "module": "es2020",
+
+    // #region
+    // "declarationDir": "",
+    // "declarationMap": false,
+    // "emitBOM": false,
+    // "emitDeclarationOnly": false,
+    // "importsNotUsedAsValues": "error",
+    // "inlineSourceMap": false,
+    // "inlineSources": false,
+    // "mapRoot": "",
+    // "newLine": "",
+    // "noEmitHelpers": false,
+    // "noEmitOnError": false,
+    // "outFile": "",
+    // "preserveConstEnums": false,
+    // "preserveValueImports": false,
+    // "removeComments": false,
+    // "sourceRoot": "",
+    // "stripInternal": false,
+    // #endregion
+
+    // ---- javascript support ----
+    "allowJs": true,
+
+    // #region
+    // "checkJs": false,
+    // "maxNodeModuleJsDepth": 0,
+    // #endregion
+
+    // ---- editor support ----
+    // #region
+    // "disableSizeLimit": false,
+    // "plugins": [],
+    // #endregion
+
+    // ---- interop constraints ----
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    // #region
+    // "isolatedModules": true,
+    // "preserveSymlinks": false,
+    // #endregion
+
+    // ---- backwards compatibility ----
+    // #region
+    // "charset": "",
+    // "keyofStringsOnly": false,
+    // "noImplicitUseStrict": false,
+    // "noStrictGenericChecks": false,
+    // "out": "",
+    // "suppressExcessPropertyErrors": false,
+    // "suppressImplicitAnyIndexErrors": false,
+    // #endregion
+
+    // ---- language and environment ----
     "lib": [
-      "es2020",
-      "dom"
-    ]
+      "dom",
+      "dom.iterable",
+      "es2020"
+    ],
+    "target": "ES5", // "es2017",
+    "experimentalDecorators": true,
+
+    // #region
+    // "emitDecoratorMetadata": true,
+    // "jsx": "react-jsx",
+    // "jsxFactory": "React.createElement",
+    // "jsxFragmentFactory": "React.Fragment",
+    // "jsxImportSource": "react",
+    // "noLib": false,
+    // "reactNamespace": "React",
+    // "useDefineForClassFields": false,
+    // #endregion
+
+    // ---- compiler diagnostics ----
+    // #region
+    // "diagnostics": false,
+    // "explainFiles": false,
+    // "extendedDiagnostics": false,
+    // "generateCpuProfile": "profile.cpuprofile",
+    // "listEmittedFiles": false,
+    // "listFiles": false,
+    // "traceResolution": false,
+    // #endregion
+
+    // ---- projects ----
+    // #region
+    // "composite": true,
+    // "disableReferencedProjectLoad": false,
+    // "disableSolutionSearching": false,
+    // "disableSourceOfProjectReferenceRedirect": false,
+    // "incremental": false,
+    // "tsBuildInfoFile": ".tsbuildinfo",
+    // #endregion
+
+    // ---- output formatting ----
+    // #region
+    // "noErrorTruncation": false,
+    // "preserveWatchOutput": false,
+    // "pretty": true,
+    // #endregion
+
+    // ---- completeness ----
+    // #region
+    // "skipLibCheck": true,
+    // "skipDefaultLibCheck":
+    // #endregion
+
+    // ---- watch options (compiler) ----
+    // #region
+    // "assumeChangesOnlyAffectDirectDependencies":
+    // #endregion
+
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+
+  // ---- include ----
+  // "include": [],
+
+  // ---- exclude ----
+  // "exclude": [],
+
+  // ---- type acquisition ----
+  // "typeAcquisition":
+
+  // ---- watch options ----
+  // "watchOptions":
+
+  // ---- files ----
+  // "files": []
+
+  // ---- extends ----
+  // "extends": ""
+
+  // ---- references ----
+  // "references": []
 }

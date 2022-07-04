@@ -109,6 +109,5 @@
                 }
             }
         }
-    },
-    "defaultProject": "rethink-first-app"
+    }
 }

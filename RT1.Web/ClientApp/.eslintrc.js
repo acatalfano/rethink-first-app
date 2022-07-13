@@ -80,6 +80,14 @@ module.exports = {
             files: ['**/*.ts'],
             rules: {
                 'prettier/prettier': 'warn'
+            },
+            settings: {
+                'import/resolver': {
+                    typescript: {
+                        alwaysTryTypes: true,
+                        project: './'
+                    }
+                }
             }
         },
         {

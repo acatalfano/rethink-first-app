@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unassigned-import
-import('jest-preset-angular/ngcc-jest-processor');
+// import('jest-preset-angular/ngcc-jest-processor');
 
 module.exports = {
     clearMocks: false,
@@ -46,15 +46,28 @@ module.exports = {
     //     }
     // },
     // /* eslint-enable no-magic-numbers */
+
+    // transform: {
+    //     '^.+\\.(j|t)sx?$': '<rootDir>/node_modules/ts-jest/preprocessor.js'
+    // },
+    // transformIgnorePatterns: [
+    //     '<rootDir>/node_modules/(?!lodash-es/.*)'
+    // ],
+
+    moduleNameMapper: {
+        '^lodash-es$': 'lodash'
+    },
+
     moduleDirectories: ['node_modules', 'src'],
-    modulePathIgnorePatterns: ['<rootDir>/node_modules/.*'],
-    preset: 'jest-preset-angular/presets/defaults-esm',
+    // modulePathIgnorePatterns: ['<rootDir>/node_modules/.*'],
+    // preset: 'jest-preset-angular/presets/defaults-esm',
+    preset: 'jest-preset-angular',
     roots: ['src'],
     setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-    snapshotSerializers: [
-        'jest-preset-angular/build/serializers/no-ng-attributes',
-        'jest-preset-angular/build/serializers/ng-snapshot',
-        'jest-preset-angular/build/serializers/html-comment'
-    ],
+    // snapshotSerializers: [
+    //     'jest-preset-angular/build/serializers/no-ng-attributes',
+    //     'jest-preset-angular/build/serializers/ng-snapshot',
+    //     'jest-preset-angular/build/serializers/html-comment'
+    // ],
     testMatch: ['**/?(*.)+(spec).[tj]s?(x)']
 };

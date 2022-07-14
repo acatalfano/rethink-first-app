@@ -12,7 +12,7 @@ import { PatientGridActionsComponent } from '../patient-grid-actions/patient-gri
 
 import { PatientGridViewComponent } from './patient-grid-view.component';
 
-import type { Patient } from 'src/app/model';
+import type { Patient } from 'model';
 
 describe('PatientGridViewComponent', () => {
     let replaceDeleteTargets: jest.Mock<void, [Patient[]]>;

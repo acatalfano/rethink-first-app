@@ -6,10 +6,10 @@ import { select, Store } from '@ngrx/store';
 import { isNil as _isNil, uniq as _uniq, zip as _zip } from 'lodash-es';
 import { AsyncSubject, from } from 'rxjs';
 
-import { Gender, NoIdPatient } from 'src/app/model';
-import { patientsActions } from 'src/app/store';
-import { GendersSelectors } from 'src/app/store/genders-store';
-import { RootState } from 'src/app/store/root.state';
+import { Gender, NoIdPatient } from 'model';
+import { patientsActions } from 'store';
+import { GendersSelectors } from 'store/genders-store';
+import { RootState } from 'store/root.state';
 
 interface HeaderCell {
     key: keyof NoIdPatient;

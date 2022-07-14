@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import type { NoIdPatient, Patient } from 'src/app/model';
+import type { NoIdPatient, Patient } from 'model';
 
 export const patientsActionText = '[PatientsAction]';
 export const patientsActions = {

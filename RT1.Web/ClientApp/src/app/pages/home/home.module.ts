@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { TooltipModule } from 'primeng/tooltip';
 
-import { FileUploadModule } from 'src/app/features/input';
-import { PatientGridModule } from 'src/app/features/patient-grid';
+import { FileUploadModule } from 'features/input';
+import { PatientGridModule } from 'features/patient-grid';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';

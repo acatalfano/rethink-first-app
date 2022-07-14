@@ -7,14 +7,14 @@ import { select, Store } from '@ngrx/store';
 import { cloneDeep as _cloneDeep, isNil as _isNil } from 'lodash-es';
 import { AsyncSubject, Observable } from 'rxjs';
 
-import { Gender, Patient } from 'src/app/model';
-import { gendersActions, GendersSelectors } from 'src/app/store/genders-store';
+import { Gender, Patient } from 'model';
+import { gendersActions, GendersSelectors } from 'store/genders-store';
 
 import { PatientBulkCrudService } from '../../services';
 
 import type { ColumnDescriptor } from './model/column-descriptor.interface';
-import type { RootState } from 'src/app/store/root.state';
-import type { RecursiveKeyOf } from 'src/app/utilities/types';
+import type { RootState } from 'store/root.state';
+import type { RecursiveKeyOf } from 'utilities/types';
 
 @Component({
     selector: 'rt1-patient-grid-view',

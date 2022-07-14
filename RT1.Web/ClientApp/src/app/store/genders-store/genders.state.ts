@@ -2,7 +2,7 @@ import { createEntityAdapter } from '@ngrx/entity';
 
 import type { BaseState } from '../store-utilities/base-state.interface';
 import type { EntityAdapter } from '@ngrx/entity';
-import type { Gender } from 'src/app/model';
+import type { Gender } from 'model';
 
 export const gendersAdapter: EntityAdapter<Gender> = createEntityAdapter<Gender>({
     selectId: entity => entity.id

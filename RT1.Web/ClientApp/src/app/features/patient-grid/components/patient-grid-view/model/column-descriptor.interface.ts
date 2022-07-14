@@ -1,5 +1,5 @@
-import type { Patient } from 'src/app/model';
-import type { RecursiveKeyOf } from 'src/app/utilities/types';
+import type { Patient } from 'model';
+import type { RecursiveKeyOf } from 'utilities/types';
 
 export interface ColumnDescriptor {
     field: RecursiveKeyOf<Patient>;

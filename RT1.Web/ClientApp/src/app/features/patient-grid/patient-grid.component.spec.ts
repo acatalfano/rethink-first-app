@@ -6,7 +6,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { MockComponents } from 'ng-mocks';
 import { Observable, OperatorFunction } from 'rxjs';
 
-import { Patient } from 'src/app/model';
+import { Patient } from 'model';
 
 import { PatientGridViewComponent } from './components/patient-grid-view/patient-grid-view.component';
 import { PatientGridComponent } from './patient-grid.component';

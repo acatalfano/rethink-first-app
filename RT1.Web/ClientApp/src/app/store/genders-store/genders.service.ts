@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Gender } from 'src/app/model';
+import { Gender } from 'model';
 
 import { BaseNetworkService } from '../network-common/base-network.service';
 

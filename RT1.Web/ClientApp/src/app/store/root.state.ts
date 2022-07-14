@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import type { BaseState } from './store-utilities/base-state.interface';
-import type { Gender, Patient } from 'src/app/model';
+import type { Gender, Patient } from 'model';
 
 export interface RootState {
     patient: BaseState<Patient>;

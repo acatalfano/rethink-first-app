@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { Patient } from 'src/app/model';
+import { Patient } from 'model';
 
 import { getLoadingState } from '../store-utilities/common';
 

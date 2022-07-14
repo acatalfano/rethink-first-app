@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { BaseNetworkService } from '../network-common/base-network.service';
 
-import type { Patient } from 'src/app/model';
+import type { Patient } from 'model';
 
 @Injectable()
 export class PatientsService extends BaseNetworkService<Patient> {

@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input } from 
 
 import { faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import type { Patient } from 'src/app/model';
+import type { Patient } from 'model';
 
 @Component({
     selector: 'rt1-patient-grid-actions',

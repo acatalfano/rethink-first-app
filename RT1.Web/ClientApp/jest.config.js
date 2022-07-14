@@ -53,21 +53,28 @@ module.exports = {
     // transformIgnorePatterns: [
     //     '<rootDir>/node_modules/(?!lodash-es/.*)'
     // ],
+    // transform: {
+    //     '^.+\\.(ts|js|mjs|html)$': 'jest-preset-angular'
+    // },
+    // transformIgnorePatterns: [
+    //     'node_modules/(?!@angular|tslib)'
+    // ],
 
     moduleNameMapper: {
-        '^lodash-es$': 'lodash'
+        '^lodash-es$': 'lodash',
+        // tslib: '<rootDir>../../node_modules/tslib/tslib.es6.js'
     },
 
-    moduleDirectories: ['node_modules', 'src'],
+    moduleDirectories: ['node_modules', 'src', 'src/app'],
     // modulePathIgnorePatterns: ['<rootDir>/node_modules/.*'],
     // preset: 'jest-preset-angular/presets/defaults-esm',
     preset: 'jest-preset-angular',
-    roots: ['src'],
+    roots: ['.'],
     setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-    // snapshotSerializers: [
-    //     'jest-preset-angular/build/serializers/no-ng-attributes',
-    //     'jest-preset-angular/build/serializers/ng-snapshot',
-    //     'jest-preset-angular/build/serializers/html-comment'
-    // ],
+    snapshotSerializers: [
+        'jest-preset-angular/build/serializers/no-ng-attributes',
+        'jest-preset-angular/build/serializers/ng-snapshot',
+        'jest-preset-angular/build/serializers/html-comment'
+    ],
     testMatch: ['**/?(*.)+(spec).[tj]s?(x)']
 };

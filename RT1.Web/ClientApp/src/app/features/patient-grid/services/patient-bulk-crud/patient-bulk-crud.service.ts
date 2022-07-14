@@ -3,9 +3,9 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { isNil as _isNil } from 'lodash-es';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 
-import { multiSwitchScan } from 'src/app/utilities/rxjs';
+import { multiSwitchScan } from 'utilities/rxjs';
 
-import type { Patient } from 'src/app/model';
+import type { Patient } from 'model';
 
 @Injectable()
 export class PatientBulkCrudService implements OnDestroy {

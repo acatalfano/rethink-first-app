@@ -4,6 +4,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "rootDir": ".",
+    "paths": {
+        "*": ["*", "./node_modules/*", "./src/*", "./src/app/*"]
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,

@@ -1,16 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Moq;
-
 using RT1.Business.Tests.Providers;
 using RT1.Business.Tests.Utilities;
 using RT1.Implementations.Services;
 using RT1.Model.Dtos;
 using RT1.Model.Dtos.OperationOutcome;
 using RT1.Model.Objects.Entities;
-
-using Xunit;
 
 namespace RT1.Business.Tests
 {

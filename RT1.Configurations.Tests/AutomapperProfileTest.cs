@@ -1,7 +1,5 @@
 using AutoMapper;
 
-using Xunit;
-
 namespace RT1.Configurations.Tests
 {
     public class AutomapperProfileTest

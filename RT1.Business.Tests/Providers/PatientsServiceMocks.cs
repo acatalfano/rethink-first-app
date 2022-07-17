@@ -6,8 +6,6 @@ using AutoMapper;
 
 using Microsoft.EntityFrameworkCore;
 
-using Moq;
-
 using RT1.Business.Tests.Comparers;
 using RT1.DataProviders;
 using RT1.Model.Dtos;

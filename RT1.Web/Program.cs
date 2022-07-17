@@ -1,38 +1,20 @@
-using System;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using RT1.Web;
 
-using NLog.Web;
+// instantiate builder and startup
+var builder = WebApplication.CreateBuilder(args);
+var startup = new Startup(builder.Configuration, builder.Environment);
 
-namespace RT1.Web
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            NLogBuilder.ConfigureNLog("NLog.config");
-            try
-            {
-                CreateHostBuilder(args).Build().Run();
-            }
-            finally
-            {
-                NLog.LogManager.Shutdown();
-            }
-        }
+// configure DI (application code, Startup.cs)
+startup.ConfigureServices(builder.Services);
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging =>
-                {
-                    logging.ClearProviders();
-                    logging.AddConsole();
-                })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>().UseNLog();
-                });
-    }
-}
+// build app
+var app = builder.Build();
+var apiVersionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+// configure app (application code, Startup.cs)
+startup.Configure(app, builder.Environment, apiVersionProvider);
+
+// start application
+app.Run();

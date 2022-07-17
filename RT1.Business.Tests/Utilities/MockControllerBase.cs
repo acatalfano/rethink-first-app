@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 using RT1.Model.Dtos.OperationOutcome;
 
-using Xunit;
-
 namespace RT1.Business.Tests.Utilities
 {
     /// <summary>

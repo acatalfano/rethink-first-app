@@ -1,19 +1,14 @@
-using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
+
+using NLog.Extensions.Logging;
 
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -23,8 +18,6 @@ using RT1.Business;
 using RT1.Implementations.Services;
 using RT1.Implementations.DataProviders;
 using RT1.DataProviders;
-using NLog.Extensions.Logging;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace RT1.Web
 {
@@ -49,9 +42,7 @@ namespace RT1.Web
                 config.AddNLog();
             });
 
-            //services.AddControllersWithViews();
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.AllowTrailingCommas = true;
@@ -155,6 +146,8 @@ namespace RT1.Web
 
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -193,7 +186,7 @@ namespace RT1.Web
         {
             get
             {
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var basePath = AppContext.BaseDirectory;
                 var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
                 return Path.Combine(basePath, fileName);
             }

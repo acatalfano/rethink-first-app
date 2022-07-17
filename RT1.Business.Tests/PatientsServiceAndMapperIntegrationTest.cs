@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
-using Moq;
+﻿using System.Threading.Tasks;
 
 using RT1.Business.Tests.Providers;
 using RT1.Business.Tests.Utilities;
-using RT1.DataProviders;
 using RT1.Implementations.Services;
 using RT1.Model.Dtos.OperationOutcome;
-
-using Xunit;
 
 namespace RT1.Business.Tests
 {
